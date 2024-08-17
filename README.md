@@ -1,3 +1,10 @@
 # Neovim configuration
 
-Plugin manager: [lazy.nvim](https://github.com/folke/lazy.nvim)
+## Dependencies
+
+- Neovim >=0.11
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
+- [fzf](https://github.com/junegunn/fzf)
+- [npm](https://github.com/npm/cli)
+- [fd](https://github.com/sharkdp/fd)
+- [NerdFont](https://github.com/ryanoasis/nerd-fonts)
