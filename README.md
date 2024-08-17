@@ -8,3 +8,9 @@
 - [npm](https://github.com/npm/cli)
 - [fd](https://github.com/sharkdp/fd)
 - [NerdFont](https://github.com/ryanoasis/nerd-fonts)
+
+### Treesitter
+
+- [tree-sitter-cli](https://tree-sitter.github.io/tree-sitter/implementation)
+- [luarocks](https://luarocks.org/)
+  - [luarocks-build-treesitter-parser](https://luarocks.org/modules/neorocks/luarocks-build-treesitter-parser)
