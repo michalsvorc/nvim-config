@@ -21,6 +21,14 @@ vim.opt.rtp:prepend(lazypath)
 -- This is also a good place to setup other settings (vim.opt)
 require("core.options")
 
+-- Register events for lazy.nvim
+local Event = require("lazy.core.handler.event")
+
+--- Add support for the LazyFile event
+local lazy_file_events = { "BufReadPost", "BufNewFile", "BufWritePre" }
+Event.mappings.LazyFile = { id = "LazyFile", event = lazy_file_events }
+Event.mappings["User LazyFile"] = Event.mappings.LazyFile
+
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
