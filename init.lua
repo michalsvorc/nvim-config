@@ -1,1 +1,1 @@
-require("./lazy")
+require(".lazy")
