@@ -21,6 +21,9 @@ vim.opt.rtp:prepend(lazypath)
 -- This is also a good place to setup other settings (vim.opt)
 require("core.options")
 
+-- Make utilities available when loading plugins.
+require("utils")
+
 -- Register events for lazy.nvim
 local Event = require("lazy.core.handler.event")
 
