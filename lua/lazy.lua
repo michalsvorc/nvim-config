@@ -36,6 +36,7 @@ Event.mappings["User LazyFile"] = Event.mappings.LazyFile
 require("lazy").setup({
   spec = {
     { import = "plugins" },
+    { import = "plugins/treesitter" },
   },
   install = { colorscheme = { "habamax" } },
   checker = { enabled = false },
