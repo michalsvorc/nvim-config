@@ -35,7 +35,7 @@ Event.mappings["User LazyFile"] = Event.mappings.LazyFile
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
-    -- { import = "plugins" }, -- TODO: enable to load plugins
+    { import = "plugins" },
   },
   install = { colorscheme = { "habamax" } },
   checker = { enabled = false },
