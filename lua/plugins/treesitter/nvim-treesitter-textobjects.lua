@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/treesitter.lua
-Changes:
+Changed:
   - split to a separate module
 --]]
 
