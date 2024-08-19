@@ -19,10 +19,10 @@ vim.opt.rtp:prepend(lazypath)
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
-require("core.options")
+require("config.options")
 
--- Make utilities available when loading plugins.
-require("utils")
+-- Make LazyVim utility available to plugins
+_G.LazyVim = require("lazyvim.util")
 
 -- Register events for lazy.nvim
 local Event = require("lazy.core.handler.event")
