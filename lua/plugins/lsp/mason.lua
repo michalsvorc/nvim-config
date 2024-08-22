@@ -15,12 +15,14 @@ limitations under the License.
 
 Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/lsp/init.lua
 Changed:
+  - use latest version to avoid deprecation warnings: https://github.com/williamboman/mason.nvim/issues/1711
   - split to a separate module
 --]]
 
 return {
   {
     "williamboman/mason.nvim",
+    version = false,
     cmd = "Mason",
     keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
     build = ":MasonUpdate",
