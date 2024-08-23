@@ -16,7 +16,7 @@ limitations under the License.
 Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/coding.lua
 Changed:
   - split to a separate module
-  - Tab key mappings
+  - replace Tab key mappings
 --]]
 
 return {
@@ -51,6 +51,8 @@ return {
         },
         preselect = auto_select and cmp.PreselectMode.Item or cmp.PreselectMode.None,
         mapping = cmp.mapping.preset.insert({
+          ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+          ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
@@ -61,39 +63,6 @@ return {
             cmp.abort()
             fallback()
           end,
-          -- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings
-          ["<Tab>"] = cmp.mapping({
-            c = function()
-              if cmp.visible() then
-                cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-              else
-                cmp.complete()
-              end
-            end,
-            i = function(fallback)
-              if cmp.visible() then
-                cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-              else
-                fallback()
-              end
-            end,
-          }),
-          ["<S-Tab>"] = cmp.mapping({
-            c = function()
-              if cmp.visible() then
-                cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
-              else
-                cmp.complete()
-              end
-            end,
-            i = function(fallback)
-              if cmp.visible() then
-                cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
-              else
-                fallback()
-              end
-            end,
-          }),
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
