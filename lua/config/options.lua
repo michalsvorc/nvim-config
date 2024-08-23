@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
+Added:
+  - Spellchecking
 Removed:
   - LazyGit configuration
 --]]
@@ -21,6 +23,10 @@ Removed:
 -- This file is automatically loaded by plugins.core
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
+
+-- Spellchecking
+vim.opt.spelllang = "en_us"
+vim.opt.spell = true
 
 -- LazyVim auto format
 vim.g.autoformat = true
