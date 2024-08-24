@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/types.lua
+Changed:
+  - set lazyvim_docs to false
 --]]
 
 ---@meta
@@ -21,7 +23,7 @@ Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/types.lua
 ---@class LazyVimGlobals
 vim.g = {}
 
-_G.lazyvim_docs = true
+_G.lazyvim_docs = false
 _G.LazyVim = require("lazyvim.util")
 
 ---@class vim.api.create_autocmd.callback.args
