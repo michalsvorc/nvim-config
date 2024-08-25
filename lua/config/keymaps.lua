@@ -16,6 +16,9 @@ limitations under the License.
 Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 Removed:
   - LazyGit configuration
+  - LazyVim changelog
+  - Floating terminal
+  - Quit all
 --]]
 
 -- This file is automatically loaded by lazyvim.config.init
@@ -149,22 +152,9 @@ if vim.lsp.inlay_hint then
   LazyVim.toggle.map("<leader>uh", LazyVim.toggle.inlay_hints)
 end
 
--- quit
-map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
-
 -- highlights under cursor
 map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 map("n", "<leader>uI", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })
-
--- LazyVim Changelog
-map("n", "<leader>L", function() LazyVim.news.changelog() end, { desc = "LazyVim Changelog" })
-
--- floating terminal
-local lazyterm = function() LazyVim.terminal(nil, { cwd = LazyVim.root() }) end
-map("n", "<leader>ft", lazyterm, { desc = "Terminal (Root Dir)" })
-map("n", "<leader>fT", function() LazyVim.terminal() end, { desc = "Terminal (cwd)" })
-map("n", "<c-/>", lazyterm, { desc = "Terminal (Root Dir)" })
-map("n", "<c-_>", lazyterm, { desc = "which_key_ignore" })
 
 -- Terminal Mappings
 map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
