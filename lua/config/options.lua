@@ -42,7 +42,7 @@ vim.g.autoformat = true
 -- Can be one of: telescope, fzf
 -- Leave it to "auto" to automatically use the picker
 -- enabled with `:LazyExtras`
-vim.g.lazyvim_picker = "auto"
+vim.g.lazyvim_picker = "fzf"
 
 -- LazyVim root dir detection
 -- Each entry can be:
