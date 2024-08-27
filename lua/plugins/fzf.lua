@@ -20,6 +20,8 @@ Changed:
   - path to LSP keymaps
   - window dimensions
   - use live_grep_glob for grep commands
+Added:
+  - git objects
 --]]
 
 -- https://github.com/ibhagwan/fzf-lua
@@ -241,8 +243,12 @@ return {
       { "<leader>fr", "<cmd>FzfLua oldfiles<cr>", desc = "Recent" },
       { "<leader>fR", LazyVim.pick("oldfiles", { cwd = vim.uv.cwd() }), desc = "Recent (cwd)" },
       -- git
-      { "<leader>gc", "<cmd>FzfLua git_commits<CR>", desc = "Commits" },
       { "<leader>gs", "<cmd>FzfLua git_status<CR>", desc = "Status" },
+      { "<leader>gb", "<cmd>FzfLua git_branches<cr>", desc = "Branches" },
+      { "<leader>gC", "<cmd>FzfLua git_commits<cr>", desc = "Commits" },
+      { "<leader>g.", "<cmd>FzfLua git_bcommits<cr>", desc = "Buffer commits" },
+      { "<leader>gS", "<cmd>FzfLua git_stash<cr>", desc = "Stash" },
+      { "<leader>gt", "<cmd>FzfLua git_tags<cr>", desc = "Tags" },
       -- search
       { '<leader>s"', "<cmd>FzfLua registers<cr>", desc = "Registers" },
       { "<leader>sa", "<cmd>FzfLua autocmds<cr>", desc = "Auto Commands" },
