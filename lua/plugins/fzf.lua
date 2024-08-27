@@ -21,7 +21,9 @@ Changed:
   - window dimensions
   - use live_grep_glob for grep commands
 Added:
-  - git objects
+  - search git objects
+  - quick keys:
+    - search current buffer
 --]]
 
 -- https://github.com/ibhagwan/fzf-lua
@@ -231,6 +233,7 @@ return {
         "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>",
         desc = "Switch Buffer",
       },
+      { "<leader>.", "<cmd>FzfLua grep_curbuf<cr>", desc = "Grep Buffer" },
       { "<leader>/", LazyVim.pick("live_grep_glob"), desc = "Grep (Root Dir)" },
       { "<leader>:", "<cmd>FzfLua command_history<cr>", desc = "Command History" },
       { "<leader><space>", LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
