@@ -16,6 +16,7 @@ limitations under the License.
 Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/editor/fzf.lua
 Removed:
   - setting vim.g.lazyvim_picker
+  - folke/todo-comments.nvim plugin
 Changed:
   - path to LSP keymaps
   - window dimensions
@@ -299,17 +300,6 @@ return {
       },
     },
   },
-
-  {
-    "folke/todo-comments.nvim",
-    optional = true,
-    -- stylua: ignore
-    keys = {
-      { "<leader>st", function() require("todo-comments.fzf").todo() end, desc = "Todo" },
-      { "<leader>sT", function () require("todo-comments.fzf").todo({ keywords = { "TODO", "FIX", "FIXME" } }) end, desc = "Todo/Fix/Fixme" },
-    },
-  },
-
   {
     "neovim/nvim-lspconfig",
     opts = function()
