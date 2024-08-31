@@ -18,6 +18,8 @@ Removed:
   - setting vim.g.lazyvim_picker
   - folke/todo-comments.nvim plugin
   - folke/trouble.nvim
+  - keys:
+    * Switch Buffer
 Changed:
   - stylua formatting
   - path to LSP keymaps
@@ -232,7 +234,6 @@ return {
     keys = {
       { "<c-j>", "<c-j>", ft = "fzf", mode = "t", nowait = true },
       { "<c-k>", "<c-k>", ft = "fzf", mode = "t", nowait = true },
-      { "<leader>,", "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>", desc = "Switch Buffer" },
       { "<leader>/", "<cmd>FzfLua grep_curbuf<cr>", desc = "Grep Buffer" },
       { "<leader>?", LazyVim.pick("live_grep_glob"), desc = "Grep (Root Dir)" },
       { "<leader>:", "<cmd>FzfLua command_history<cr>", desc = "Command History" },
