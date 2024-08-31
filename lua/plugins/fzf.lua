@@ -227,7 +227,6 @@ return {
         end
       end)
     end,
-      -- stylua: ignore
     keys = {
       { "<c-j>", "<c-j>", ft = "fzf", mode = "t", nowait = true },
       { "<c-k>", "<c-k>", ft = "fzf", mode = "t", nowait = true },
@@ -277,8 +276,20 @@ return {
       { "<leader>sw", LazyVim.pick("grep_visual"), mode = "v", desc = "Selection (Root Dir)" },
       { "<leader>sW", LazyVim.pick("grep_visual", { root = false }), mode = "v", desc = "Selection (cwd)" },
       { "<leader>uC", LazyVim.pick("colorschemes"), desc = "Colorscheme with Preview" },
-      { "<leader>ss", function() require("fzf-lua").lsp_document_symbols({ regex_filter = symbols_filter }) end, desc = "Goto Symbol" },
-      { "<leader>sS", function() require("fzf-lua").lsp_live_workspace_symbols({ regex_filter = symbols_filter }) end, desc = "Goto Symbol (Workspace)" },
+      {
+        "<leader>ss",
+        function()
+          require("fzf-lua").lsp_document_symbols({ regex_filter = symbols_filter })
+        end,
+        desc = "Goto Symbol",
+      },
+      {
+        "<leader>sS",
+        function()
+          require("fzf-lua").lsp_live_workspace_symbols({ regex_filter = symbols_filter })
+        end,
+        desc = "Goto Symbol (Workspace)",
+      },
     },
   },
   {
