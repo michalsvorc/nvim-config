@@ -25,10 +25,11 @@ Changed:
   - use live_grep_glob for grep commands
   - fzf layout
 Added:
-  - search quickfix
-  - search git objects
-  - quick keys:
-    - search current buffer
+  - keys:
+    * search quickfix
+    * search git objects
+    * search current buffer
+    * lsp actions
 --]]
 
 -- https://github.com/ibhagwan/fzf-lua
@@ -286,10 +287,14 @@ return {
       local Keys = require("lazyvim.plugins.lsp.keymaps").get()
       -- stylua: ignore
       vim.list_extend(Keys, {
-        { "gd", "<cmd>FzfLua lsp_definitions     jump_to_single_result=true ignore_current_line=true<cr>", desc = "Goto Definition", has = "definition" },
-        { "gr", "<cmd>FzfLua lsp_references      jump_to_single_result=true ignore_current_line=true<cr>", desc = "References", nowait = true },
-        { "gI", "<cmd>FzfLua lsp_implementations jump_to_single_result=true ignore_current_line=true<cr>", desc = "Goto Implementation" },
-        { "gy", "<cmd>FzfLua lsp_typedefs        jump_to_single_result=true ignore_current_line=true<cr>", desc = "Goto T[y]pe Definition" },
+        { "gS", "<cmd>FzfLua lsp_finder<cr>",                                                               desc = "Goto (Search)" },
+        { "gd", "<cmd>FzfLua lsp_definitions     jump_to_single_result=true ignore_current_line=true<cr>",  desc = "Goto Definition", has = "definition" },
+        { "gD", "<cmd>FzfLua lsp_declarations    jump_to_single_result=true ignore_current_line=true<cr>",  desc = "Goto Declaration", has = "declaration" },
+        { "gr", "<cmd>FzfLua lsp_references      jump_to_single_result=true ignore_current_line=true<cr>",  desc = "References", nowait = true },
+        { "gI", "<cmd>FzfLua lsp_implementations jump_to_single_result=true ignore_current_line=true<cr>",  desc = "Goto Implementation" },
+        { "gt", "<cmd>FzfLua lsp_typedefs        jump_to_single_result=true ignore_current_line=true<cr>",  desc = "Goto Type Definition" },
+        { "ga", "<cmd>FzfLua lsp_incoming_calls  jump_to_single_result=false<cr>",                          desc = "Incoming Calls", has = "callHierarchy/incomingCalls" },
+        { "gA", "<cmd>FzfLua lsp_outgoing_calls  jump_to_single_result=false<cr>",                          desc = "Outgoing Calls", has = "callHierarchy/outgoingCalls" },
       })
     end,
   },
