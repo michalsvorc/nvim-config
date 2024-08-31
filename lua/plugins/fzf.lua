@@ -29,6 +29,7 @@ Changed:
   - keys:
     * grep actions
 Added:
+  - minimalist buffer picker
   - keys:
     * search quickfix
     * search git objects
@@ -71,6 +72,18 @@ local function symbols_filter(entry, ctx)
   end
   return vim.tbl_contains(ctx.symbols_filter, entry.kind)
 end
+
+local winopts_small_screen = {
+  layout = "vertical",
+  -- height is based on vim.o.lines, with a minimum of 25 lines
+  height = math.max(math.floor(vim.o.lines * 0.5 + 0.5), 25),
+  -- width is based on the number of columns, with a minimum of 80 columns
+  width = math.max(math.floor(vim.o.columns * 0.35 + 0.5), 80),
+  preview = {
+    layout = "vertical",
+    hidden = "hidden",
+  },
+}
 
 return {
   desc = "Awesome picker for FZF (alternative to Telescope)",
@@ -234,6 +247,17 @@ return {
     keys = {
       { "<c-j>", "<c-j>", ft = "fzf", mode = "t", nowait = true },
       { "<c-k>", "<c-k>", ft = "fzf", mode = "t", nowait = true },
+      {
+        "<leader>.",
+        function()
+          require("fzf-lua").buffers({
+            sort_mru = true,
+            sort_lastused = true,
+            winopts = winopts_small_screen,
+          })
+        end,
+        desc = "Buffers",
+      },
       { "<leader>/", "<cmd>FzfLua grep_curbuf<cr>", desc = "Grep Buffer" },
       { "<leader>?", LazyVim.pick("live_grep_glob"), desc = "Grep (Root Dir)" },
       { "<leader>:", "<cmd>FzfLua command_history<cr>", desc = "Command History" },
