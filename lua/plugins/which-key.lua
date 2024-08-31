@@ -17,6 +17,8 @@ Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/editor.
 Changed:
   - split to a separate module
   - remove `config` function
+  - keys:
+    * Buffer Keymaps (which-key)
 --]]
 
 -- Repository: https://github.com/folke/which-key.nvim
@@ -68,7 +70,7 @@ return {
   },
   keys = {
     {
-      "<leader>?",
+      "<leader>b?",
       function()
         require("which-key").show({ global = false })
       end,
