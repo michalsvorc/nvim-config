@@ -19,6 +19,7 @@ Removed:
   - folke/todo-comments.nvim plugin
   - folke/trouble.nvim
 Changed:
+  - stylua formatting
   - path to LSP keymaps
   - window dimensions
   - use live_grep_glob for grep commands
@@ -225,14 +226,11 @@ return {
         end
       end)
     end,
+      -- stylua: ignore
     keys = {
       { "<c-j>", "<c-j>", ft = "fzf", mode = "t", nowait = true },
       { "<c-k>", "<c-k>", ft = "fzf", mode = "t", nowait = true },
-      {
-        "<leader>,",
-        "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>",
-        desc = "Switch Buffer",
-      },
+      { "<leader>,", "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>", desc = "Switch Buffer" },
       { "<leader>.", "<cmd>FzfLua grep_curbuf<cr>", desc = "Grep Buffer" },
       { "<leader>/", LazyVim.pick("live_grep_glob"), desc = "Grep (Root Dir)" },
       { "<leader>:", "<cmd>FzfLua command_history<cr>", desc = "Command History" },
@@ -278,24 +276,8 @@ return {
       { "<leader>sw", LazyVim.pick("grep_visual"), mode = "v", desc = "Selection (Root Dir)" },
       { "<leader>sW", LazyVim.pick("grep_visual", { root = false }), mode = "v", desc = "Selection (cwd)" },
       { "<leader>uC", LazyVim.pick("colorschemes"), desc = "Colorscheme with Preview" },
-      {
-        "<leader>ss",
-        function()
-          require("fzf-lua").lsp_document_symbols({
-            regex_filter = symbols_filter,
-          })
-        end,
-        desc = "Goto Symbol",
-      },
-      {
-        "<leader>sS",
-        function()
-          require("fzf-lua").lsp_live_workspace_symbols({
-            regex_filter = symbols_filter,
-          })
-        end,
-        desc = "Goto Symbol (Workspace)",
-      },
+      { "<leader>ss", function() require("fzf-lua").lsp_document_symbols({ regex_filter = symbols_filter }) end, desc = "Goto Symbol" },
+      { "<leader>sS", function() require("fzf-lua").lsp_live_workspace_symbols({ regex_filter = symbols_filter }) end, desc = "Goto Symbol (Workspace)" },
     },
   },
   {
