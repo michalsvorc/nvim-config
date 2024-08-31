@@ -36,6 +36,7 @@ Added:
     * search git objects
     * search current buffer
     * lsp actions
+    * Recent files shortcut
 --]]
 
 -- https://github.com/ibhagwan/fzf-lua
@@ -291,6 +292,7 @@ return {
       { "<leader>sh", "<cmd>FzfLua help_tags<cr>", desc = "Help Pages" },
       { "<leader>sH", "<cmd>FzfLua highlights<cr>", desc = "Search Highlight Groups" },
       { "<leader><", "<cmd>FzfLua jumps<cr>", desc = "Jumplist" },
+      { "<leader>>", "<cmd>FzfLua oldfiles<cr>", desc = "Recent" },
       { "<leader>sk", "<cmd>FzfLua keymaps<cr>", desc = "Key Maps" },
       { "<leader>sl", "<cmd>FzfLua loclist<cr>", desc = "Location List" },
       { "<leader>sM", "<cmd>FzfLua man_pages<cr>", desc = "Man Pages" },
