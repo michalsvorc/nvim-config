@@ -13,7 +13,7 @@ return {
       dotenv = { glyph = "", hl = "MiniIconsYellow" },
     },
   },
-  config = function()
-    require("mini.icons").setup()
+  config = function(_, opts)
+    require("mini.icons").setup(opts)
   end,
 }
