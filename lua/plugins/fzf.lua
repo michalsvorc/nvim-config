@@ -28,6 +28,7 @@ Changed:
   - fzf layout
   - keys:
     * grep actions
+    * jumplist
 Added:
   - minimalist buffer picker
   - keys:
@@ -289,7 +290,7 @@ return {
       { "<leader>sG", LazyVim.pick("live_grep_glob", { root = false }), desc = "Grep (cwd)" },
       { "<leader>sh", "<cmd>FzfLua help_tags<cr>", desc = "Help Pages" },
       { "<leader>sH", "<cmd>FzfLua highlights<cr>", desc = "Search Highlight Groups" },
-      { "<leader>sj", "<cmd>FzfLua jumps<cr>", desc = "Jumplist" },
+      { "<leader><", "<cmd>FzfLua jumps<cr>", desc = "Jumplist" },
       { "<leader>sk", "<cmd>FzfLua keymaps<cr>", desc = "Key Maps" },
       { "<leader>sl", "<cmd>FzfLua loclist<cr>", desc = "Location List" },
       { "<leader>sM", "<cmd>FzfLua man_pages<cr>", desc = "Man Pages" },
