@@ -17,6 +17,7 @@ Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/
 Removed:
   - setting vim.g.lazyvim_picker
   - folke/todo-comments.nvim plugin
+  - folke/trouble.nvim
 Changed:
   - path to LSP keymaps
   - window dimensions
@@ -84,11 +85,6 @@ return {
       config.defaults.keymap.fzf["ctrl-b"] = "preview-page-up"
       config.defaults.keymap.builtin["<c-f>"] = "preview-page-down"
       config.defaults.keymap.builtin["<c-b>"] = "preview-page-up"
-
-      -- Trouble
-      if LazyVim.has("trouble.nvim") then
-        config.defaults.actions.files["ctrl-t"] = require("trouble.sources.fzf").actions.open
-      end
 
       -- Toggle root dir / cwd
       config.defaults.actions.files["ctrl-r"] = function(_, ctx)
