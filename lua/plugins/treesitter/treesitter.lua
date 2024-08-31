@@ -23,22 +23,21 @@ Changed:
 -- Repository: https://github.com/nvim-treesitter/nvim-treesitter
 -- Description: Nvim Treesitter configurations and abstraction layer.
 -- Supported languages: https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages
--- TODO: Enable additional languages
 local ensure_installed = {
-  -- "bash",
-  -- "diff",
-  -- "json",
-  -- "jsonc",
+  "bash",
+  "diff",
+  "json",
+  "jsonc",
   "lua",
   "luadoc",
   "luap",
-  -- "markdown",
-  -- "markdown_inline",
-  -- "python",
-  -- "query",
-  -- "regex",
-  -- "toml",
-  -- "yaml",
+  "markdown",
+  "markdown_inline",
+  "python",
+  "query",
+  "regex",
+  "toml",
+  "yaml",
 }
 
 return {
