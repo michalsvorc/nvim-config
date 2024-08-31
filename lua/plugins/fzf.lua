@@ -21,6 +21,7 @@ Changed:
   - path to LSP keymaps
   - window dimensions
   - use live_grep_glob for grep commands
+  - fzf layout
 Added:
   - search quickfix
   - search git objects
@@ -127,6 +128,7 @@ return {
       return vim.tbl_deep_extend("force", defaults, {
         fzf_colors = true,
         fzf_opts = {
+          ["--layout"] = "default",
           ["--no-scrollbar"] = true,
         },
         defaults = {
