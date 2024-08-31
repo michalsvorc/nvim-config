@@ -23,7 +23,7 @@ Removed:
 -- This file is automatically loaded by plugins.core
 -- Leader keys
 vim.g.mapleader = ","
-vim.g.maplocalleader = ","
+vim.g.maplocalleader = " "
 
 -- Symbols for displaying invisible characters
 vim.opt.listchars = {
