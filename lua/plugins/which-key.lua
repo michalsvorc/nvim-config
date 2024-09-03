@@ -14,6 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/editor.lua
+Removed:
+  - keys:
+    * git hunks
+Added:
+  - keys:
+    * git stash
 Changed:
   - split to a separate module
   - remove `config` function
@@ -38,7 +44,7 @@ return {
         { "<leader>c", group = "code" },
         { "<leader>f", group = "file/find" },
         { "<leader>g", group = "git" },
-        { "<leader>gh", group = "hunks" },
+        { "<leader>gs", group = "stash" },
         { "<leader>q", group = "quit/session" },
         { "<leader>s", group = "search" },
         { "<leader>u", group = "ui", icon = { icon = "󰙵 ", color = "cyan" } },
