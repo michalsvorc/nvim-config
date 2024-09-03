@@ -276,8 +276,8 @@ return {
       { "<leader>gs", "<cmd>FzfLua git_status<CR>", desc = "Status" },
       { "<leader>gb", "<cmd>FzfLua git_branches<cr>", desc = "Branches" },
       { "<leader>gC", "<cmd>FzfLua git_commits<cr>", desc = "Commits" },
-      { "<leader>g.", "<cmd>FzfLua git_bcommits<cr>", desc = "Buffer commits" },
-      { "<leader>gS", "<cmd>FzfLua git_stash<cr>", desc = "Stash" },
+      { "<leader>g.", "<cmd>FzfLua git_bcommits<cr>", desc = "Buffer Commits" },
+      { "<leader>gsa", "<cmd>FzfLua git_stash<cr>", desc = "Stash Apply" },
       { "<leader>gt", "<cmd>FzfLua git_tags<cr>", desc = "Tags" },
       -- search
       { '<leader>s"', "<cmd>FzfLua registers<cr>", desc = "Registers" },
