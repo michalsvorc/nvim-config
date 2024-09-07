@@ -16,6 +16,18 @@ local toggle_detailed_view = {
   end,
 }
 
+local function toggle_explorer()
+  local oil = require("oil")
+  local bufnr = vim.api.nvim_get_current_buf()
+  local bufname = vim.api.nvim_buf_get_name(bufnr)
+
+  if bufname:match("^oil://") then
+    oil.close()
+  else
+    oil.open()
+  end
+end
+
 return {
   "stevearc/oil.nvim",
   event = "VeryLazy", -- required for default_file_explorer to work
@@ -39,10 +51,8 @@ return {
   keys = {
     {
       "<leader>e",
-      function()
-        require("oil").open()
-      end,
-      desc = "File explorer",
+      toggle_explorer,
+      desc = "File Explorer",
     },
   },
 }
