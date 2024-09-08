@@ -32,6 +32,9 @@ vim.opt.listchars = {
   nbsp = "␣",
 }
 
+-- Vim navigation for fzf results
+vim.env.FZF_DEFAULT_OPTS = "--bind=ctrl-j:down,ctrl-k:up"
+
 -- Spellchecking
 vim.opt.spelllang = "en_us"
 vim.opt.spell = true
