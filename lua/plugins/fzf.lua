@@ -30,7 +30,7 @@ Changed:
     * grep actions
     * jumplist
 Added:
-  - minimalist buffer picker
+  - buffer picker
   - keys:
     * search quickfix
     * search git objects
@@ -246,24 +246,19 @@ return {
         end
       end)
     end,
+    -- stylua: ignore
     keys = {
       { "<c-j>", "<c-j>", ft = "fzf", mode = "t", nowait = true },
       { "<c-k>", "<c-k>", ft = "fzf", mode = "t", nowait = true },
-      {
-        "<leader>.",
-        function()
-          require("fzf-lua").buffers({
-            sort_mru = true,
-            sort_lastused = true,
-            winopts = winopts_small_screen,
-          })
-        end,
-        desc = "Buffers",
-      },
-      { "<leader>/", "<cmd>FzfLua grep_curbuf<cr>", desc = "Grep Buffer" },
-      { "<leader>?", LazyVim.pick("live_grep_glob"), desc = "Grep (Root Dir)" },
+      -- quick keys
+      { "<leader><", function() require("fzf-lua").buffers({ sort_mru = true, sort_lastused = true, winopts = winopts_small_screen, }) end, desc = "Buffers", },
+      { "<leader>.", LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
+      { "<leader>>", "<cmd>FzfLua oldfiles<cr>", desc = "Recent Files" },
+      { "<leader>?", "<cmd>FzfLua grep_curbuf<cr>", desc = "Grep Buffer" },
+      { "<leader>/", LazyVim.pick("live_grep_glob"), desc = "Grep (Root Dir)" },
       { "<leader>:", "<cmd>FzfLua command_history<cr>", desc = "Command History" },
-      { "<leader><space>", LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
+      { "<leader>2", "<cmd>FzfLua git_status<cr>", desc = "Git Status" },
+      { "<leader>#", LazyVim.pick("grep_cword"), desc = "Grep Word (Root Dir)" },
       -- find
       { "<leader>fb", "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>", desc = "Buffers" },
       { "<leader>fc", LazyVim.pick.config_files(), desc = "Find Config File" },
@@ -273,7 +268,7 @@ return {
       { "<leader>fr", "<cmd>FzfLua oldfiles<cr>", desc = "Recent" },
       { "<leader>fR", LazyVim.pick("oldfiles", { cwd = vim.uv.cwd() }), desc = "Recent (cwd)" },
       -- git
-      { "<leader>gs", "<cmd>FzfLua git_status<CR>", desc = "Status" },
+      { "<leader>gs", "<cmd>FzfLua git_status<cr>", desc = "Status" },
       { "<leader>gb", "<cmd>FzfLua git_branches<cr>", desc = "Branches" },
       { "<leader>gC", "<cmd>FzfLua git_commits<cr>", desc = "Commits" },
       { "<leader>g.", "<cmd>FzfLua git_bcommits<cr>", desc = "Buffer Commits" },
@@ -291,8 +286,6 @@ return {
       { "<leader>sG", LazyVim.pick("live_grep_glob", { root = false }), desc = "Grep (cwd)" },
       { "<leader>sh", "<cmd>FzfLua help_tags<cr>", desc = "Help Pages" },
       { "<leader>sH", "<cmd>FzfLua highlights<cr>", desc = "Search Highlight Groups" },
-      { "<leader><", "<cmd>FzfLua jumps<cr>", desc = "Jumplist" },
-      { "<leader>>", "<cmd>FzfLua oldfiles<cr>", desc = "Recent" },
       { "<leader>sk", "<cmd>FzfLua keymaps<cr>", desc = "Key Maps" },
       { "<leader>sl", "<cmd>FzfLua loclist<cr>", desc = "Location List" },
       { "<leader>sM", "<cmd>FzfLua man_pages<cr>", desc = "Man Pages" },
@@ -306,20 +299,12 @@ return {
       { "<leader>sw", LazyVim.pick("grep_visual"), mode = "v", desc = "Selection (Root Dir)" },
       { "<leader>sW", LazyVim.pick("grep_visual", { root = false }), mode = "v", desc = "Selection (cwd)" },
       { "<leader>uC", LazyVim.pick("colorschemes"), desc = "Colorscheme with Preview" },
-      {
-        "<leader>ss",
-        function()
-          require("fzf-lua").lsp_document_symbols({ regex_filter = symbols_filter })
-        end,
-        desc = "Goto Symbol",
-      },
-      {
-        "<leader>sS",
-        function()
-          require("fzf-lua").lsp_live_workspace_symbols({ regex_filter = symbols_filter })
-        end,
-        desc = "Goto Symbol (Workspace)",
-      },
+      { "<leader>ss", function() require("fzf-lua").lsp_document_symbols({ regex_filter = symbols_filter }) end, desc = "Goto Symbol" },
+      { "<leader>sS", function() require("fzf-lua").lsp_live_workspace_symbols({ regex_filter = symbols_filter }) end, desc = "Goto Symbol (Workspace)" },
+      -- buffer
+      { "<leader>bb", function() require("fzf-lua").buffers({ sort_mru = true, sort_lastused = true }) end, desc = "Buffers", },
+      -- other
+      { "<leader>j", "<cmd>FzfLua jumps<cr>", desc = "Jumplist" },
     },
   },
   {
