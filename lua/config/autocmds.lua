@@ -15,7 +15,9 @@ limitations under the License.
 
 Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 Removed:
-  - Fix conceallevel for json files
+  - Fix conceallevel for json files.
+Added:
+  - Start terminal in insert mode.
 --]]
 
 -- This file is automatically loaded by lazyvim.config.init.
@@ -154,5 +156,13 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.schedule(function()
       vim.bo[ev.buf].syntax = vim.filetype.match({ buf = ev.buf }) or ""
     end)
+  end,
+})
+
+-- Start terminal in insert mode.
+vim.api.nvim_create_autocmd({ "TermOpen" }, {
+  pattern = "term://*",
+  callback = function()
+    vim.cmd("startinsert")
   end,
 })
