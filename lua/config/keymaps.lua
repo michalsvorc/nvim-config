@@ -24,7 +24,8 @@ Changed:
   - Lazy
   - Switch to Other Buffer
 Added:
-  - Commands
+  - commands
+  - open terminal
 --]]
 
 -- This file is automatically loaded by lazyvim.config.init
@@ -161,7 +162,7 @@ end
 map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 map("n", "<leader>uI", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })
 
--- Terminal Mappings
+-- terminal mappings
 map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
 map("t", "<C-h>", "<cmd>wincmd h<cr>", { desc = "Go to Left Window" })
 map("t", "<C-j>", "<cmd>wincmd j<cr>", { desc = "Go to Lower Window" })
@@ -169,6 +170,13 @@ map("t", "<C-k>", "<cmd>wincmd k<cr>", { desc = "Go to Upper Window" })
 map("t", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Go to Right Window" })
 map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 map("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
+
+-- open terminal
+map("n", "<leader>t", "<cmd>vsplit | term<cr>", { desc = "Terminal", noremap = true, silent = true })
+map("n", "<leader>T", function()
+  local project_root = LazyVim.root.get()
+  vim.cmd("vsplit | lcd " .. project_root .. " | term")
+end, { desc = "Terminal (Root Dir)",noremap = true, silent = true  })
 
 -- windows
 map("n", "<leader>w", "<c-w>", { desc = "Windows", remap = true })
