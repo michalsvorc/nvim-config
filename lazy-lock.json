@@ -8,7 +8,7 @@
   "flash.nvim": { "branch": "main", "commit": "ec0bf2842189f65f60fd40bf3557cac1029cc932" },
   "friendly-snippets": { "branch": "main", "commit": "00ebcaa159e817150bd83bfe2d51fa3b3377d5c4" },
   "fzf-lua": { "branch": "main", "commit": "1ac27d5734ccd057ef2b46a8644022913f37b89e" },
-  "grug-far.nvim": { "branch": "main", "commit": "ebab68b2150079732ae8074eefb261a124824139" },
+  "grug-far.nvim": { "branch": "main", "commit": "907c3480a3392ec8a2db68cb2a4e59879379b464" },
   "lazy.nvim": { "branch": "main", "commit": "077102c5bfc578693f12377846d427f49bc50076" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "62360f061d45177dda8afc1b0fd1327328540301" },
   "mason.nvim": { "branch": "main", "commit": "e2f7f9044ec30067bc11800a9e266664b88cda22" },
