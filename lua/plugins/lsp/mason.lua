@@ -17,7 +17,15 @@ Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/lsp/ini
 Changed:
   - use latest version to avoid deprecation warnings: https://github.com/williamboman/mason.nvim/issues/1711
   - split to a separate module
+  - extract ensure_installed table
 --]]
+
+-- https://github.com/williamboman/mason.nvim
+-- Easily install and manage LSP servers, DAP servers, linters, and formatters.
+local ensure_installed = {
+  "stylua",
+  "shfmt",
+}
 
 return {
   {
@@ -28,9 +36,7 @@ return {
     build = ":MasonUpdate",
     opts_extend = { "ensure_installed" },
     opts = {
-      ensure_installed = {
-        "stylua",
-        "shfmt",
+      ensure_installed = ensure_installed,
       },
     },
     ---@param opts MasonSettings | {ensure_installed: string[]}
