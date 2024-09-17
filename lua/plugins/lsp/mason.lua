@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/lsp/init.lua
+Added:
+  - ui options
 Changed:
   - use latest version to avoid deprecation warnings: https://github.com/williamboman/mason.nvim/issues/1711
   - split to a separate module
@@ -37,6 +39,9 @@ return {
     opts_extend = { "ensure_installed" },
     opts = {
       ensure_installed = ensure_installed,
+      ui = {
+        width = 1,
+        height = 1,
       },
     },
     ---@param opts MasonSettings | {ensure_installed: string[]}
