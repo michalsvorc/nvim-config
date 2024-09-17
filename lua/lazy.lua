@@ -35,9 +35,9 @@ Event.mappings["User LazyFile"] = Event.mappings.LazyFile
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
-    { import = "plugins" },
-    { import = "plugins/lsp" },
     { import = "plugins/treesitter" },
+    { import = "plugins/lsp" },
+    { import = "plugins" },
   },
   install = {},
   checker = { enabled = false },
