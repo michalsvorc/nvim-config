@@ -23,6 +23,7 @@ Changed:
 Added:
   - formatting: prettier
   - linting: eslint
+  - type-checking: dmmulroy/tsc.nvim
 --]]
 ---@diagnostic disable: unused-local, undefined-doc-name, undefined-field
 return {
@@ -196,10 +197,18 @@ return {
       },
     },
   },
-  -- Formatting
+  -- formatting
   { import = "langs.formatting.prettier" },
-  -- Linting
+  -- linting
   { import = "langs.linting.eslint" },
+  -- type-checking
+  {
+    "dmmulroy/tsc.nvim",
+    event = "LazyFile",
+    config = function()
+      require("tsc").setup()
+    end,
+  },
   -- Filetype icons
   {
     "echasnovski/mini.icons",
