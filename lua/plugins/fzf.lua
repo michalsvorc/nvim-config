@@ -291,6 +291,9 @@ return {
       { "<leader>sS", function() require("fzf-lua").lsp_live_workspace_symbols({ regex_filter = symbols_filter }) end, desc = "Goto Symbol (Workspace)" },
       -- buffer
       { "<leader>bb", function() require("fzf-lua").buffers({ sort_mru = true, sort_lastused = true }) end, desc = "Buffers", },
+      -- diagnostics
+      { "<leader>d", "<cmd>FzfLua diagnostics_document<cr>", desc = "Document Diagnostics" },
+      { "<leader>D", "<cmd>FzfLua diagnostics_workspace<cr>", desc = "Workspace Diagnostics" },
       -- other
       { "<leader>j", "<cmd>FzfLua jumps<cr>", desc = "Jumplist" },
     },
