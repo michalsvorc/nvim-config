@@ -198,9 +198,9 @@ return {
     },
   },
   -- formatting
-  { import = "langs.formatting.prettier" },
+  { import = "extras.formatting.prettier" },
   -- linting
-  { import = "langs.linting.eslint" },
+  { import = "extras.linting.eslint" },
   -- type-checking
   {
     "dmmulroy/tsc.nvim",
