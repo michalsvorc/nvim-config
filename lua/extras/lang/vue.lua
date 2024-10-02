@@ -60,4 +60,26 @@ return {
       })
     end,
   },
+
+  -- Fix comments in template blocks
+  -- https://www.reddit.com/r/neovim/comments/16unvy4/cannot_make_lazyvim_comment_work_on_vue/
+  -- https://github.com/LazyVim/LazyVim/blob/274649e92321d615888f889476c9329f8d831e8e/lua/lazyvim/plugins/coding.lua#L162-L172
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    lazy = true,
+    opts = {
+      enable_autocmd = false,
+    },
+  },
+  {
+    "echasnovski/mini.comment",
+    event = "VeryLazy",
+    opts = {
+      options = {
+        custom_commentstring = function()
+          return require("ts_context_commentstring.internal").calculate_commentstring() or vim.bo.commentstring
+        end,
+      },
+    },
+  },
 }
