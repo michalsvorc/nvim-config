@@ -247,6 +247,8 @@ return {
       { "<leader>:", "<cmd>FzfLua command_history<cr>", desc = "Command History" },
       { "<leader>2", "<cmd>FzfLua git_status<cr>", desc = "Git Status" },
       { "<leader>3", "<cmd>FzfLua grep_curbuf<cr>", desc = "Grep Buffer" },
+      { "<leader>4", function() require("fzf-lua").lsp_document_symbols({ regex_filter = symbols_filter }) end, desc = "LSP Symbols" },
+      { "<leader>5", "<cmd>FzfLua treesitter<cr>", desc = "Treesitter Symbols" },
       -- find
       { "<leader>fb", "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>", desc = "Buffers" },
       { "<leader>fc", LazyVim.pick.config_files(), desc = "Find Config File" },
@@ -288,14 +290,14 @@ return {
       { "<leader>sw", LazyVim.pick("grep_visual"), mode = "v", desc = "Selection (Root Dir)" },
       { "<leader>sW", LazyVim.pick("grep_visual", { root = false }), mode = "v", desc = "Selection (cwd)" },
       { "<leader>uC", LazyVim.pick("colorschemes"), desc = "Colorscheme with Preview" },
-      { "<leader>ss", function() require("fzf-lua").lsp_document_symbols({ regex_filter = symbols_filter }) end, desc = "Goto Symbol" },
-      { "<leader>sS", function() require("fzf-lua").lsp_live_workspace_symbols({ regex_filter = symbols_filter }) end, desc = "Goto Symbol (Workspace)" },
       -- buffer
       { "<leader>bb", function() require("fzf-lua").buffers({ sort_mru = true, sort_lastused = true }) end, desc = "Buffers", },
       -- diagnostics
       { "<leader>d", "<cmd>FzfLua diagnostics_document<cr>", desc = "Document Diagnostics" },
       { "<leader>D", "<cmd>FzfLua diagnostics_workspace<cr>", desc = "Workspace Diagnostics" },
       -- symbols
+      { "<leader>cs", function() require("fzf-lua").lsp_document_symbols({ regex_filter = symbols_filter }) end, desc = "LSP Symbols" },
+      { "<leader>cS", function() require("fzf-lua").lsp_live_workspace_symbols({ regex_filter = symbols_filter }) end, desc = "LSP Symbols (Workspace)" },
       { "<leader>ct", "<cmd>FzfLua treesitter<cr>", desc = "Treesitter Symbols" },
       -- other
       { "<leader>j", "<cmd>FzfLua jumps<cr>", desc = "Jumplist" },
