@@ -121,6 +121,7 @@ map("n", "<leader>L", "<cmd>LspInfo<cr>", { desc = "LSP Info" })
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
 -- quickfix
+map("n", "<leader>Q", "<cmd>QuickfixAddCurrent<cr>", { desc = "Quickfix Add Current" })
 map("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
 map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 map("n", "[Q", vim.cmd.colder, { desc = "Previous Quickfix List" })
