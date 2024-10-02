@@ -114,8 +114,8 @@ map("v", ">", ">gv")
 map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
 map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
 
--- lazy
-map("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
+-- LSP
+map("n", "<leader>L", "<cmd>LspInfo<cr>", { desc = "LSP Info" })
 
 -- new file
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
