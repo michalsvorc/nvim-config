@@ -262,6 +262,7 @@ return {
       { "<leader>g.", "<cmd>FzfLua git_bcommits<cr>", desc = "Buffer Commits" },
       { "<leader>gsa", "<cmd>FzfLua git_stash<cr>", desc = "Stash Apply" },
       { "<leader>gt", "<cmd>FzfLua git_tags<cr>", desc = "Tags" },
+      { "<leader>g?", "<cmd>FzfLua git_blame<cr>", desc = "Buffer Blame" },
       -- search
       { '<leader>s"', "<cmd>FzfLua registers<cr>", desc = "Registers" },
       { "<leader>sa", "<cmd>FzfLua autocmds<cr>", desc = "Auto Commands" },
