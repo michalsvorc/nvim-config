@@ -304,14 +304,16 @@ return {
       local Keys = require("lazyvim.plugins.lsp.keymaps").get()
       -- stylua: ignore
       vim.list_extend(Keys, {
-        { "gS", "<cmd>FzfLua lsp_finder<cr>",                                                               desc = "Goto (Search)" },
-        { "gd", "<cmd>FzfLua lsp_definitions     jump_to_single_result=true ignore_current_line=true<cr>",  desc = "Goto Definition", has = "definition" },
-        { "gD", "<cmd>FzfLua lsp_declarations    jump_to_single_result=true ignore_current_line=true<cr>",  desc = "Goto Declaration", has = "declaration" },
-        { "gr", "<cmd>FzfLua lsp_references      jump_to_single_result=true ignore_current_line=true<cr>",  desc = "References", nowait = true },
-        { "gI", "<cmd>FzfLua lsp_implementations jump_to_single_result=true ignore_current_line=true<cr>",  desc = "Goto Implementation" },
-        { "gt", "<cmd>FzfLua lsp_typedefs        jump_to_single_result=true ignore_current_line=true<cr>",  desc = "Goto Type Definition" },
-        { "ga", "<cmd>FzfLua lsp_incoming_calls  jump_to_single_result=false<cr>",                          desc = "Incoming Calls", has = "callHierarchy/incomingCalls" },
-        { "gA", "<cmd>FzfLua lsp_outgoing_calls  jump_to_single_result=false<cr>",                          desc = "Outgoing Calls", has = "callHierarchy/outgoingCalls" },
+        { "gl", "<cmd>FzfLua lsp_finder<cr>",                                                               desc = "LSP Finder" },
+        { "gd", "<cmd>FzfLua lsp_definitions     jump_to_single_result=true ignore_current_line=true<cr>",  desc = "LSP Definition", has = "definition" },
+        { "gD", "<cmd>FzfLua lsp_declarations    jump_to_single_result=true ignore_current_line=true<cr>",  desc = "LSP Declaration", has = "declaration" },
+        { "gr", "<cmd>FzfLua lsp_references      jump_to_single_result=true ignore_current_line=true<cr>",  desc = "LSP References", nowait = true },
+        { "gI", "<cmd>FzfLua lsp_implementations jump_to_single_result=true ignore_current_line=true<cr>",  desc = "LSP Implementation" },
+        { "gt", "<cmd>FzfLua lsp_typedefs        jump_to_single_result=true ignore_current_line=true<cr>",  desc = "LSP Type Definition" },
+        { "ga", "<cmd>FzfLua lsp_incoming_calls  jump_to_single_result=false<cr>",                          desc = "LSP Incoming Calls", has = "callHierarchy/incomingCalls" },
+        { "gA", "<cmd>FzfLua lsp_outgoing_calls  jump_to_single_result=false<cr>",                          desc = "LSP Outgoing Calls", has = "callHierarchy/outgoingCalls" },
+        -- shortcuts
+        { "<leader>l", "<cmd>FzfLua lsp_finder<cr>",                                                               desc = "LSP Finder" },
       })
     end,
   },
