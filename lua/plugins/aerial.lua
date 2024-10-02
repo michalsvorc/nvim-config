@@ -76,6 +76,6 @@ return {
   keys = {
     { "<leader>cs", "<cmd>AerialToggle<cr>", desc = "Symbols" },
     -- quick keys
-    { "<leader>3", "<cmd>AerialToggle<cr>", desc = "Symbols" },
+    { "<leader>4", "<cmd>AerialToggle<cr>", desc = "Symbols" },
   },
 }

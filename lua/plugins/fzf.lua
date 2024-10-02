@@ -242,11 +242,11 @@ return {
       { "<leader><", function() require("fzf-lua").buffers({ sort_mru = true, sort_lastused = true, winopts = require("config.fzf").winopts.small_window, }) end, desc = "Buffers", },
       { "<leader>.", LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
       { "<leader>>", "<cmd>FzfLua oldfiles<cr>", desc = "Recent Files" },
-      { "<leader>?", "<cmd>FzfLua grep_curbuf<cr>", desc = "Grep Buffer" },
+      { "<leader>?", LazyVim.pick("grep_cword"), desc = "Grep Word (Root Dir)" },
       { "<leader>/", LazyVim.pick("live_grep_glob"), desc = "Grep (Root Dir)" },
       { "<leader>:", "<cmd>FzfLua command_history<cr>", desc = "Command History" },
       { "<leader>2", "<cmd>FzfLua git_status<cr>", desc = "Git Status" },
-      { "<leader>#", LazyVim.pick("grep_cword"), desc = "Grep Word (Root Dir)" },
+      { "<leader>3", "<cmd>FzfLua grep_curbuf<cr>", desc = "Grep Buffer" },
       -- find
       { "<leader>fb", "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>", desc = "Buffers" },
       { "<leader>fc", LazyVim.pick.config_files(), desc = "Find Config File" },
