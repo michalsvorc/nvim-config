@@ -295,6 +295,8 @@ return {
       -- diagnostics
       { "<leader>d", "<cmd>FzfLua diagnostics_document<cr>", desc = "Document Diagnostics" },
       { "<leader>D", "<cmd>FzfLua diagnostics_workspace<cr>", desc = "Workspace Diagnostics" },
+      -- symbols
+      { "<leader>ct", "<cmd>FzfLua treesitter<cr>", desc = "Treesitter Symbols" },
       -- other
       { "<leader>j", "<cmd>FzfLua jumps<cr>", desc = "Jumplist" },
     },
