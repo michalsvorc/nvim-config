@@ -16,9 +16,12 @@ limitations under the License.
 Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/lang/vue.lua
 Removed:
   - recommend function
-  - typescript import
 --]]
 return {
+
+  -- depends on the typescript extra
+  { import = "extras.lang.typescript" },
+
   {
     "nvim-treesitter/nvim-treesitter",
     opts = { ensure_installed = { "vue", "css" } },
