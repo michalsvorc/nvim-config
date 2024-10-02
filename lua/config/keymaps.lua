@@ -123,6 +123,8 @@ map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 -- quickfix
 map("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
 map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
+map("n", "[Q", vim.cmd.colder, { desc = "Previous Quickfix List" })
+map("n", "]Q", vim.cmd.cnewer, { desc = "Next Quickfix List" })
 
 -- formatting
 map({ "n", "v" }, "<leader>cf", function()
