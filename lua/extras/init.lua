@@ -1,8 +1,8 @@
 return {
   -- ai
   "ai/neocodeium",
-  -- langs
-  "langs/python",
-  "langs/typescript",
-  "langs/vue",
+  -- lang
+  "lang/python",
+  "lang/typescript",
+  "lang/vue",
 }
