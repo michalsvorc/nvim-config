@@ -246,6 +246,7 @@ return {
       { "<leader>/", LazyVim.pick("live_grep_glob"), desc = "Grep (Root Dir)" },
       { "<leader>:", "<cmd>FzfLua command_history<cr>", desc = "Command History" },
       { "<leader>'", "<cmd>FzfLua marks<cr>", desc = "Marks" },
+      { '<leader>"', "<cmd>FzfLua registers<cr>", desc = "Registers" },
       { "<leader>2", "<cmd>FzfLua git_status<cr>", desc = "Git Status" },
       { "<leader>3", "<cmd>FzfLua grep_curbuf<cr>", desc = "Grep Buffer" },
       { "<leader>4", function() require("fzf-lua").lsp_document_symbols({ regex_filter = symbols_filter }) end, desc = "LSP Symbols" },
