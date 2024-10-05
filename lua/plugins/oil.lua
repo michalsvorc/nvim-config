@@ -45,6 +45,7 @@ return {
         ["gS"] = "actions.change_sort",
         ["<C-q>"] = "actions.send_to_qflist",
         ["<A-q>"] = "actions.add_to_qflist",
+        ["="] = "actions.preview",
       },
     })
   end,
