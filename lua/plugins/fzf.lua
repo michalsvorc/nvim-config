@@ -20,6 +20,7 @@ Removed:
   - folke/trouble.nvim
   - custom LazyVim option to configure vim.ui.select
     fixes picker display for some plugins (CodeCompanion) in visual mode
+  - code actions previewer
   - keys:
     * Switch Buffer
 Changed:
@@ -188,7 +189,7 @@ return {
             child_prefix = false,
           },
           code_actions = {
-            previewer = vim.fn.executable("delta") == 1 and "codeaction_native" or nil,
+            winopts = require("config.fzf").winopts.small_window,
           },
         },
       })
@@ -260,7 +261,9 @@ return {
       -- diagnostics
       { "<leader>d", "<cmd>FzfLua diagnostics_document<cr>", desc = "Document Diagnostics" },
       { "<leader>D", "<cmd>FzfLua diagnostics_workspace<cr>", desc = "Workspace Diagnostics" },
-      -- symbols
+      -- code
+      { "<leader>ca", "<cmd>FzfLua lsp_code_actions<cr>", desc = "Code Action", mode = { "n", "v" }},
+      --- symbols
       { "<leader>cs", function() require("fzf-lua").lsp_document_symbols({ regex_filter = symbols_filter }) end, desc = "LSP Symbols" },
       { "<leader>cS", function() require("fzf-lua").lsp_live_workspace_symbols({ regex_filter = symbols_filter }) end, desc = "LSP Symbols (Workspace)" },
       { "<leader>ct", "<cmd>FzfLua treesitter<cr>", desc = "Treesitter Symbols" },
