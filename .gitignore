@@ -1,2 +1,3 @@
+/lua/config/_local.lua
 /lua/plugins/_local/*
 !/lua/plugins/_local/index.lua

@@ -12,3 +12,13 @@
 ## Acknowledgments
 
 This project is inspired by and incorporates configuration files from the [LazyVim](https://github.com/LazyVim/LazyVim/) repository.
+
+## Local configuration
+
+### lua/config/_local.lua
+
+Enables setting and overriding global variables. This file must be created for use and is not tracked by version control.
+
+### lua/plugins/_local/
+
+Facilitates adding local plugin specifications. Any plugin specifications placed in this directory are not tracked by version control.
