@@ -3,7 +3,7 @@
 return {
   "folke/todo-comments.nvim",
   version = false,
-  dependencies = { "nvim-lua/plenary.nvim", lazy = true },
+  dependencies = { "nvim-lua/plenary.nvim" },
   event = "LazyFile",
   opts = {},
   keys = {
