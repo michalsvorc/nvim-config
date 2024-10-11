@@ -13,7 +13,7 @@ return {
     prune = "180d",
     win_opts = {
       width = 0.5,
-      height = 0.35,
+      height = 0.5,
       row = 0.5,
       col = 0.5,
       relative = "editor",
