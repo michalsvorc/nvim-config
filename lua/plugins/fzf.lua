@@ -177,6 +177,13 @@ return {
             ["alt-i"] = { actions.toggle_ignore },
             ["alt-h"] = { actions.toggle_hidden },
           },
+          -- allow ripgrep flags in live grep
+          -- https://github.com/ibhagwan/fzf-lua/wiki#how-can-i-send-custom-flags-to-ripgrep-with-live_grep
+          rg_glob = true,
+          rg_glob_fn = function(query)
+            local regex, flags = query:match("^(.-)%s%-%-(.*)$")
+            return (regex or query), flags
+          end,
         },
         lsp = {
           symbols = {
