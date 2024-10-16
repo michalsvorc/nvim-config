@@ -21,6 +21,9 @@ vim.opt.rtp:prepend(lazypath)
 -- This is also a good place to setup other settings (vim.opt)
 require("config.options")
 
+-- Setup paths
+require("config.paths")
+
 -- Optional local configuration file
 pcall(require, "config._local")
 
