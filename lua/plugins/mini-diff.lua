@@ -6,11 +6,11 @@ return {
   version = false,
   keys = {
     {
-      "<leader>gD",
+      "<leader>hh",
       function()
         require("mini.diff").toggle_overlay(0)
       end,
-      desc = "Diff Hunks",
+      desc = "Diff hunks",
     },
   },
   opts = {
@@ -24,14 +24,14 @@ return {
     },
     mappings = {
       -- Apply hunks inside a visual/operator region
-      apply = "<leader>h",
+      apply = "<leader>ha",
 
       -- Reset hunks inside a visual/operator region
-      reset = "<leader>H",
+      reset = "<leader>hr",
 
       -- Hunk range textobject to be used inside operator
       -- Works also in Visual mode if mapping differs from apply and reset
-      textobject = "<leader>h",
+      textobject = "H",
     },
   },
   config = function(_, opts)
