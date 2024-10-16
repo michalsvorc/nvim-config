@@ -5,7 +5,7 @@
 -- keymaps: https://github.com/olimorris/codecompanion.nvim/blob/main/lua/codecompanion/config.lua#L108
 -- TODO: keymaps
 
-local adapter_openai = "openai"
+local adapter = "openai"
 local picker = "fzf_lua"
 local get_api_key = require("functions.api_key").get_api_key
 
@@ -21,7 +21,7 @@ return {
   opts = {
     adapters = {
       openai = function()
-        return require("codecompanion.adapters").extend(adapter_openai, {
+        return require("codecompanion.adapters").extend(adapter, {
           env = {
             api_key = get_api_key(vim.g.api_key_openai_path),
           },
@@ -30,7 +30,7 @@ return {
     },
     strategies = {
       chat = {
-        adapter = adapter_openai,
+        adapter = adapter,
 
         slash_commands = {
           ["buffer"] = {
@@ -46,7 +46,7 @@ return {
         },
       },
       inline = {
-        adapter = adapter_openai,
+        adapter = adapter,
       },
     },
     display = {
