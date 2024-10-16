@@ -48,9 +48,6 @@ return {
       inline = {
         adapter = adapter_openai,
       },
-      agent = {
-        adapter = adapter_openai,
-      },
     },
     display = {
       chat = {
