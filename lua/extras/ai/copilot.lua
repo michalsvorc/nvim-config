@@ -40,7 +40,7 @@ return {
     config = function(_, opts)
       require("copilot").setup(opts)
 
-      local fg_color = vim.api.nvim_get_hl_by_name("Normal", true).foreground
+      local fg_color = vim.api.nvim_get_hl_by_name("Include", true).foreground
       vim.api.nvim_set_hl(0, "CopilotSuggestion", { fg = fg_color })
       vim.api.nvim_set_hl(0, "CopilotAnnotation", { fg = fg_color })
 
