@@ -16,11 +16,11 @@ return {
     },
     -- stylua: ignore
     keys = {
-      { "<A-f>", function() require("neocodeium").accept() end, mode = "i" },
-      { "<A-w>", function() require("neocodeium").accept_word() end, mode = "i" },
-      { "<A-a>", function() require("neocodeium").accept_line() end, mode = "i" },
-      { "<A-e>", function() require("neocodeium").cycle_or_complete() end, mode = "i" },
-      { "<A-r>", function() require("neocodeium").cycle_or_complete(-1) end, mode = "i" },
+      { "<A-i>", function() require("neocodeium").accept() end, mode = "i" },
+      { "<A-l>", function() require("neocodeium").accept_line() end, mode = "i" },
+      { "<A-h>", function() require("neocodeium").accept_word() end, mode = "i" },
+      { "<A-j>", function() require("neocodeium").cycle_or_complete() end, mode = "i" },
+      { "<A-k>", function() require("neocodeium").cycle_or_complete(-1) end, mode = "i" },
       { "<A-c>", function() require("neocodeium").clear() end, mode = "i" },
     },
     config = function(_, opts)
