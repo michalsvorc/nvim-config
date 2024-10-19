@@ -4,7 +4,7 @@
 return {
   {
     "zbirenbaum/copilot.lua",
-    event = "InsertEnter",
+    event = "LazyFile",
     version = false,
     keys = {
       { "<LocalLeader>s", "<cmd>Copilot panel<cr>", mode = { "n", "v" }, desc = "Suggestion panel" },
