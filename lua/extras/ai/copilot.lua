@@ -22,13 +22,14 @@ return {
         auto_trigger = true,
         hide_during_completion = true,
         debounce = 75,
+        -- stylua: ignore
         keymap = {
-          accept = "<A-i>",
-          accept_line = "<A-l>",
-          accept_word = "<A-h>",
-          next = "<A-j>",
-          prev = "<A-k>",
-          dismiss = "<A-c>",
+          accept =      "<C-a>",
+          accept_line = "<C-l>",
+          accept_word = "<C-w>",
+          next =        "<C-j>",
+          prev =        "<C-k>",
+          dismiss =     "<C-c>",
         },
       },
       filetypes = {
