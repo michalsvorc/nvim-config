@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/coding.lua
+Added:
+  - option to toggle automatic opening of completion pop-up
 Changed:
   - split to a separate module
   - replace Tab key mappings
@@ -48,6 +50,7 @@ return {
         auto_brackets = {}, -- configure any filetype to auto add brackets
         completion = {
           completeopt = "menu,menuone,noinsert" .. (auto_select and "" or ",noselect"),
+          autocomplete = false, -- toggle automatic opening of completion pop-up
         },
         preselect = auto_select and cmp.PreselectMode.Item or cmp.PreselectMode.None,
         mapping = cmp.mapping.preset.insert({
