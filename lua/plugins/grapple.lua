@@ -8,7 +8,7 @@ return {
   opts = {
     scope = "git",
     icons = true,
-    quick_select = "asdfgqwerty",
+    quick_select = "1234567890",
     default_scopes = { lsp = false },
     prune = "180d",
     win_opts = {
