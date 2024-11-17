@@ -203,3 +203,7 @@ map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 -- commands
 map("n", "<leader>;", ":<C-f>", { desc = "Commands" })
+
+-- remap built-in commands
+vim.api.nvim_create_user_command("Wa", "wa", {})
+vim.api.nvim_create_user_command("WA", "wa", {})
