@@ -7,6 +7,8 @@ return {
     custom_highlights = function(colors)
       return {
         WinSeparator = { fg = colors.surface2 },
+        LineNr = { fg = colors.overlay0 },
+        CursorLineNr = { fg = colors.blue },
         Comment = { fg = colors.subtext0 },
       }
     end,
