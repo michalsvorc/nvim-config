@@ -168,22 +168,6 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
   end,
 })
 
--- Change the local working directory (lcd) to the directory of the currently opened file.
--- This ensures the :term working directory matches the directory of the current buffer.
--- Special buffers are excluded from this behavior.
-vim.api.nvim_create_autocmd("BufEnter", {
-  pattern = "*",
-  callback = function()
-    local current_bufname = vim.api.nvim_buf_get_name(0)
-    local is_regular_buffer = vim.bo.buftype == ""
-    local is_special_buffer = current_bufname:match("^oil:///") or current_bufname:match("^fugitive://")
-
-    if is_regular_buffer and not is_special_buffer then
-      vim.cmd("lcd %:p:h")
-    end
-  end,
-})
-
 -- Quickfix buffer keymaps
 -- Dependencies: stevearc/quicker.nvim
 vim.api.nvim_create_autocmd("FileType", {
