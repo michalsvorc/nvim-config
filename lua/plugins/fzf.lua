@@ -239,6 +239,7 @@ return {
       { "<leader>gt", "<cmd>FzfLua git_tags<cr>", desc = "Tags" },
       { "<leader>g?", "<cmd>FzfLua git_blame<cr>", desc = "Buffer Blame" },
       -- search
+      { "<leader>S", LazyVim.pick("live_grep_glob"), desc = "Grep +glob (Root Dir)" },
       { '<leader>s"', "<cmd>FzfLua registers<cr>", desc = "Registers" },
       { "<leader>sa", "<cmd>FzfLua autocmds<cr>", desc = "Auto Commands" },
       { "<leader>sb", "<cmd>FzfLua grep_curbuf<cr>", desc = "Buffer" },
