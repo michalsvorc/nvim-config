@@ -214,7 +214,7 @@ return {
       { "<leader>>", "<cmd>FzfLua oldfiles<cr>", desc = "Recent Files" },
       { "<leader>?", LazyVim.pick("grep_cword"), mode = "n", desc = "Grep Word (Root Dir)" },
       { "<leader>?", LazyVim.pick("grep_visual"), mode = "v", desc = "Selection (Root Dir)" },
-      { "<leader>/", LazyVim.pick("live_grep_glob"), desc = "Grep (Root Dir)" },
+      { "<leader>/", "<cmd>FzfLua grep_project<cr>", desc = "Grep project" },
       { "<leader>:", "<cmd>FzfLua command_history<cr>", desc = "Command History" },
       { "<leader>'", "<cmd>FzfLua marks<cr>", desc = "Marks" },
       { '<leader>"', "<cmd>FzfLua registers<cr>", desc = "Registers" },
