@@ -79,6 +79,8 @@ local function symbols_filter(entry, ctx)
   return vim.tbl_contains(ctx.symbols_filter, entry.kind)
 end
 
+local winopts = require("plugins.fzf.winopts")
+
 return {
   desc = "Awesome picker for FZF (alternative to Telescope)",
   recommended = true,
@@ -196,7 +198,7 @@ return {
             child_prefix = false,
           },
           code_actions = {
-            winopts = require("config.fzf").winopts.small_window,
+            winopts = winopts.small_window,
           },
         },
       })
@@ -209,7 +211,7 @@ return {
       { "<c-j>", "<c-j>", ft = "fzf", mode = "t", nowait = true },
       { "<c-k>", "<c-k>", ft = "fzf", mode = "t", nowait = true },
       -- quick keys
-      { "<leader><", function() require("fzf-lua").buffers({ sort_mru = true, sort_lastused = true, winopts = require("config.fzf").winopts.small_window, }) end, desc = "Buffers", },
+      { "<leader><", function() require("fzf-lua").buffers({ sort_mru = true, sort_lastused = true, winopts = winopts.small_window, }) end, desc = "Buffers", },
       { "<leader>.", LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
       { "<leader>>", "<cmd>FzfLua oldfiles<cr>", desc = "Recent Files" },
       { "<leader>?", LazyVim.pick("grep_cword"), mode = "n", desc = "Grep Word (Root Dir)" },

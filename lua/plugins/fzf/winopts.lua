@@ -1,6 +1,4 @@
-local M = {}
-
-M.winopts = {
+return {
   small_window = {
     layout = "vertical",
     -- height is based on vim.o.lines, with a minimum of 25 lines
@@ -13,5 +11,3 @@ M.winopts = {
     },
   },
 }
-
-return M
