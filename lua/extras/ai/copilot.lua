@@ -21,12 +21,12 @@ return {
         enabled = true,
         auto_trigger = true,
         hide_during_completion = true,
-        debounce = 75,
+        debounce = 25,
         -- stylua: ignore
         keymap = {
-          accept =      "<C-a>",
+          accept =      "<C-i>",
           accept_line = "<C-l>",
-          accept_word = "<C-w>",
+          accept_word = "<C-h>",
           next =        "<C-j>",
           prev =        "<C-k>",
           dismiss =     "<C-c>",
@@ -36,15 +36,15 @@ return {
         markdown = true,
         gitcommit = true,
         gitrebase = false,
+        codecompanion = true,
         ["."] = false,
       },
     },
     config = function(_, opts)
       require("copilot").setup(opts)
 
-      local fg_color = vim.api.nvim_get_hl_by_name("Include", true).foreground
-      vim.api.nvim_set_hl(0, "CopilotSuggestion", { fg = fg_color })
-      vim.api.nvim_set_hl(0, "CopilotAnnotation", { fg = fg_color })
+      vim.api.nvim_set_hl(0, "CopilotSuggestion", { link = "Function" })
+      vim.api.nvim_set_hl(0, "CopilotAnnotation", { link = "Function" })
 
       -- cmp menu override
       -- https://github.com/zbirenbaum/copilot.lua?tab=readme-ov-file#suggestion

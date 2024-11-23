@@ -24,7 +24,10 @@ require("config.options")
 -- Set paths
 require("config.paths")
 
--- Optional local configuration file, overrides the previous options
+-- Plugin options
+require("config.plugins")
+
+-- Local options for overrides, not tracked by version control
 pcall(require, "config._local")
 
 -- Make LazyVim utility available to plugins

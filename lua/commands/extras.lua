@@ -4,13 +4,13 @@ local function handle_extras(action, args)
   local input = args.args
   local config_path = vim.fn.stdpath("config")
 
-  if not vim.tbl_contains(extras, input) then
+  if not extras[input] then
     print("Error: '" .. input .. "' is not a valid extra.")
     return
   end
 
-  local source = config_path .. "/lua/extras/" .. input .. ".lua"
-  local target = config_path .. "/lua/plugins/_local/" .. input:gsub("/", "-") .. ".lua"
+  local source = config_path .. "/lua/extras/" .. extras[input]
+  local target = config_path .. "/lua/plugins/_local/" .. input .. ".lua"
 
   if action == "enable" then
     os.execute("ln -sfn " .. source .. " " .. target)
@@ -38,13 +38,17 @@ end
 vim.api.nvim_create_user_command("ExtrasEnable", extras_enable, {
   nargs = 1,
   complete = function()
-    return extras
+    local keys = vim.tbl_keys(extras)
+    table.sort(keys)
+    return keys
   end,
 })
 
 vim.api.nvim_create_user_command("ExtrasDisable", extras_disable, {
   nargs = 1,
   complete = function()
-    return extras
+    local keys = vim.tbl_keys(extras)
+    table.sort(keys)
+    return keys
   end,
 })

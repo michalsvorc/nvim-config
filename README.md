@@ -17,7 +17,7 @@ This project is inspired by and incorporates configuration files from the [LazyV
 
 ### lua/config/_local.lua
 
-Enables setting and overriding global variables. This file must be created for use and is not tracked by version control.
+Enables local overrides for config options.
 
 ### lua/plugins/_local/
 
