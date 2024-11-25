@@ -23,15 +23,19 @@ return {
   opts = {
     adapters = {
       openai = function()
-        if adapter == "openai" then
-          return require("codecompanion.adapters.openai")
+        if adapter ~= "openai" then
+          return {}
         end
 
-        return require("codecompanion.adapters").extend(adapter, {
+        local api_key = get_api_key(vim.g.api_key_openai_path)
+
+        local adapter_settings = {
           env = {
-            api_key = get_api_key(vim.g.api_key_openai_path),
+            api_key = api_key,
           },
-        })
+        }
+
+        return require("codecompanion.adapters").extend(adapter, adapter_settings)
       end,
     },
     strategies = {
