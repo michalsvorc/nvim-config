@@ -7,6 +7,7 @@
   "codecompanion.nvim": { "branch": "main", "commit": "4329d87a1f37b47f3ea3887e39d93dd507a84dd0" },
   "conform.nvim": { "branch": "master", "commit": "6239d9986f51ca93ded99ecdb1af0e287eabb651" },
   "copilot.lua": { "branch": "master", "commit": "f8d8d872bb319f640d5177dad5fbf01f7a16d7d0" },
+  "dial.nvim": { "branch": "master", "commit": "46b4375e84e8eb771129bff6b2b1e47746601ef9" },
   "dressing.nvim": { "branch": "master", "commit": "43b8f74e0b1e3f41e51f640f8efa3bcd401cea0d" },
   "flash.nvim": { "branch": "main", "commit": "ec0bf2842189f65f60fd40bf3557cac1029cc932" },
   "friendly-snippets": { "branch": "main", "commit": "de8fce94985873666bd9712ea3e49ee17aadb1ed" },
