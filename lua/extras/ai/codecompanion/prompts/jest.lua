@@ -19,8 +19,9 @@ When writing unit tests in Jest, follow these steps:
       - Normal cases
       - Edge cases
       - Error handling (if applicable)
-4. Provide the generated unit tests in a clear and organized manner without additional explanations or chat.
-5. Don't add comments to the generated code.
+4. Use Mock.of<T>() function from 'ts-mockery' library to type mocked objects.
+5. Provide the generated unit tests in a clear and organized manner without additional explanations or chat.
+6. Don't add comments to the generated code.
 ]],
       opts = {
         visible = false,
