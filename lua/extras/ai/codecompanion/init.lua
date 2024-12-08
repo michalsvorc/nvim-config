@@ -72,7 +72,7 @@ return {
     prompt_library = prompts,
   },
   keys = {
-    { "<LocalLeader>\\", "<cmd>CodeCompanionChat Toggle<cr>", mode = { "n", "v" }, desc = "Chat" },
+    { "<LocalLeader>\\", "<cmd>CodeCompanionChat<cr>", mode = { "n", "v" }, desc = "Chat" },
     { "<LocalLeader>v", "<cmd>vsplit | CodeCompanionChat Toggle<cr>", mode = { "n", "v" }, desc = "Chat (vsplit)" },
     { "<LocalLeader>a", "<cmd>CodeCompanionActions<cr>", mode = { "n", "v" }, desc = "Actions" },
     { "<LocalLeader>A", "<cmd>CodeCompanionChat Add<cr>", mode = "v", desc = "Add to Chat" },
