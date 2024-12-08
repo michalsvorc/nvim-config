@@ -9,6 +9,7 @@ return {
     keys = {
       { "<LocalLeader>s", "<cmd>Copilot panel<cr>", mode = { "n", "v" }, desc = "Suggestions panel" },
       { "<LocalLeader>S", "<cmd>set buflisted | Copilot toggle<cr>", mode = { "n", "v" }, desc = "Suggestions toggle" },
+      { "<LocalLeader>p", "<cmd>Copilot! attach<cr>", mode = { "n", "v" }, desc = "Copilot attach" },
     },
     opts = {
       panel = {
