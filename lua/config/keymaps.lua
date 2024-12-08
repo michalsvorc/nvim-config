@@ -179,8 +179,8 @@ map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 map("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
 
 -- open terminal
-map("n", "<leader>t", "<cmd>vsplit | term<cr>", { desc = "Terminal", noremap = true, silent = true })
 map("n", "<leader>T", function()
+map("n", "<leader>t", "<cmd>term<cr>", { desc = "Terminal", noremap = true, silent = true })
   local project_root = LazyVim.root.get()
   vim.cmd("vsplit | lcd " .. project_root .. " | term")
 end, { desc = "Terminal (Root Dir)",noremap = true, silent = true  })
