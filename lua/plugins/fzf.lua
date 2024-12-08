@@ -32,6 +32,7 @@ Changed:
   - disabled init function to configure vim.ui.select
 Added:
   - buffer picker
+  - loading of custom pickers
 --]]
 
 -- https://github.com/ibhagwan/fzf-lua
@@ -189,6 +190,9 @@ return {
       require("fzf-lua").setup(opts)
     end,
     keys = keymaps.base,
+    init = function()
+      require("plugins.fzf.pickers")
+    end,
   },
   {
     "neovim/nvim-lspconfig",
