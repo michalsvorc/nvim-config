@@ -49,6 +49,7 @@ return {
         { "<leader>h", group = "hunks", icon = { icon = "󰊢 ", color = "orange" } },
         { "<leader>r", group = "refactor", icon = { icon = " ", color = "orange" } },
         { "<leader>s", group = "search" },
+        { "<leader>t", group = "terminal", icon = { icon = "", color = "red" } },
         { "<leader>u", group = "ui", icon = { icon = "󰙵 ", color = "cyan" } },
         { "[", group = "prev" },
         { "]", group = "next" },
