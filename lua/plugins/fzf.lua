@@ -213,7 +213,7 @@ return {
       -- quick keys
       { "<leader><", function() require("fzf-lua").buffers({ sort_mru = true, sort_lastused = true, winopts = winopts.small_window, }) end, desc = "Buffers", },
       { "<leader>.", LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
-      { "<leader>>", "<cmd>FzfLua oldfiles<cr>", desc = "Recent Files" },
+      { "<leader>>", function() require("fzf-lua").oldfiles({fzf_opts = { ['--query'] = '!~ ' }}) end, desc = "Recent Files (Project)" },
       { "<leader>?", LazyVim.pick("grep_cword"), mode = "n", desc = "Grep Word (Root Dir)" },
       { "<leader>?", LazyVim.pick("grep_visual"), mode = "v", desc = "Selection (Root Dir)" },
       { "<leader>/", "<cmd>FzfLua grep_project<cr>", desc = "Grep project" },
