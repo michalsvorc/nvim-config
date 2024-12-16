@@ -7,7 +7,6 @@ local adapter = vim.g.codecompanion_adapter
 local picker = "fzf_lua"
 local prompts = require("extras/ai/codecompanion/prompts")
 local get_api_key = require("functions.api_key").get_api_key
-local get_buffer_content = require("functions.buffer").get_buffer_content
 
 -- Expand 'cc' into 'CodeCompanion' in the command line
 vim.cmd([[cab cc CodeCompanion]])
@@ -80,64 +79,26 @@ return {
     {
       "<LocalLeader>e",
       function()
-        local content = get_buffer_content()
-        require("codecompanion").prompt("explain", content)
-      end,
-      mode = "n",
-      desc = "Explain",
-    },
-    {
-      "<LocalLeader>e",
-      function()
         require("codecompanion").prompt("explain")
       end,
       mode = "v",
-      desc = "Explain (selection)",
+      desc = "Explain",
     },
-    {
-      "<LocalLeader>f",
-      function()
-        local content = get_buffer_content()
-        require("codecompanion").prompt("fix", content)
-      end,
-      mode = "n",
-      desc = "Fix code",
-    },
-
     {
       "<LocalLeader>f",
       function()
         require("codecompanion").prompt("fix")
       end,
       mode = "v",
-      desc = "Fix code (selection)",
+      desc = "Fix",
     },
-    {
-      "<LocalLeader>r",
-      function()
-        local content = get_buffer_content()
-        require("codecompanion").prompt("refactor", content)
-      end,
-      mode = "n",
-      desc = "Refactor code",
-    },
-
     {
       "<LocalLeader>r",
       function()
         require("codecompanion").prompt("refactor")
       end,
       mode = "v",
-      desc = "Refactor code (selection)",
-    },
-    {
-      "<LocalLeader>c",
-      function()
-        local content = get_buffer_content()
-        require("codecompanion").prompt("commit", content)
-      end,
-      mode = "n",
-      desc = "Generate commit",
+      desc = "Refactor",
     },
     {
       "<LocalLeader>c",
@@ -145,16 +106,7 @@ return {
         require("codecompanion").prompt("commit")
       end,
       mode = "v",
-      desc = "Generate commit (selection)",
-    },
-    {
-      "<LocalLeader>d",
-      function()
-        local content = get_buffer_content()
-        require("codecompanion").prompt("lsp", content)
-      end,
-      mode = "n",
-      desc = "Explain diagnostics",
+      desc = "Generate commit",
     },
     {
       "<LocalLeader>d",
@@ -162,24 +114,7 @@ return {
         require("codecompanion").prompt("lsp")
       end,
       mode = "v",
-      desc = "Explain diagnostics (selection)",
-    },
-    {
-      "<LocalLeader>t",
-      function()
-        local content = get_buffer_content()
-        require("codecompanion").prompt("tests", content)
-      end,
-      mode = "n",
-      desc = "Generate tests",
-    },
-    {
-      "<LocalLeader>t",
-      function()
-        require("codecompanion").prompt("tests")
-      end,
-      mode = "v",
-      desc = "Generate tests",
+      desc = "Diagnostics",
     },
   },
   config = true,
