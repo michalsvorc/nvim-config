@@ -1,11 +1,12 @@
 local fmt = string.format
+local constants = require("extras.ai.codecompanion.constants")
 
 return {
   strategy = "chat",
   description = "Refactor the selected code",
   opts = {
     index = 7,
-    is_default = true,
+    is_default = false,
     is_slash_cmd = false,
     modes = { "v" },
     short_name = "refactor",
@@ -15,7 +16,7 @@ return {
   },
   prompts = {
     {
-      role = "system",
+      role = constants.SYSTEM_ROLE,
       content = [[
 When asked to refactor code, follow these steps:
 
@@ -40,12 +41,13 @@ Use Markdown formatting and include the programming language name at the start o
       },
     },
     {
-      role = "user",
+      role = constants.USER_ROLE,
       content = function(context)
         local code = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
 
         return fmt(
-          [[Please refactor this code from buffer %d:
+          [[
+Please refactor this code from buffer %d:
 
 ```%s
 %s

@@ -77,6 +77,22 @@ return {
     { "<LocalLeader>a", "<cmd>CodeCompanionActions<cr>", mode = { "n", "v" }, desc = "Actions" },
     { "<LocalLeader>A", "<cmd>CodeCompanionChat Add<cr>", mode = "v", desc = "Add to Chat" },
     {
+      "<LocalLeader>c",
+      function()
+        require("codecompanion").prompt("commit")
+      end,
+      mode = "v",
+      desc = "Commit message",
+    },
+    {
+      "<LocalLeader>d",
+      function()
+        require("codecompanion").prompt("lsp")
+      end,
+      mode = "v",
+      desc = "Diagnostics",
+    },
+    {
       "<LocalLeader>e",
       function()
         require("codecompanion").prompt("explain")
@@ -101,20 +117,12 @@ return {
       desc = "Refactor",
     },
     {
-      "<LocalLeader>c",
+      "<LocalLeader>t",
       function()
-        require("codecompanion").prompt("commit")
+        require("codecompanion").prompt("tests")
       end,
       mode = "v",
-      desc = "Generate commit",
-    },
-    {
-      "<LocalLeader>d",
-      function()
-        require("codecompanion").prompt("lsp")
-      end,
-      mode = "v",
-      desc = "Diagnostics",
+      desc = "Unit tests",
     },
   },
   config = true,

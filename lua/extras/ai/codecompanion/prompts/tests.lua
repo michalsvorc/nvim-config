@@ -1,4 +1,13 @@
+--[[
+Copyright (c) 2024 Oli Morris
+
+Source: https://github.com/olimorris/codecompanion.nvim/blob/v10.7.0/lua/codecompanion/config.lua#L506
+Changed:
+  - system prompt content
+--]]
+
 local fmt = string.format
+local constants = require("extras.ai.codecompanion.constants")
 
 return {
   strategy = "chat",
@@ -15,8 +24,9 @@ return {
   },
   prompts = {
     {
-      role = "system",
-      content = [[When generating unit tests, follow these steps:
+      role = constants.SYSTEM_ROLE,
+      content = [[
+When generating unit tests, follow these steps:
 
 1. Identify the programming language.
 2. Identify the purpose of the function or module to be tested.
@@ -27,20 +37,22 @@ return {
       - Normal cases
       - Edge cases
       - Error handling (if applicable)
-6. Provide the generated unit tests in a clear and organized manner without additional explanations or chat.
-7. Don't add comments to the generated code.
+6. Add an empty line to separate the declare, act, and assert phases in the test.
+7. Provide the generated unit tests in a clear and organized manner without additional explanations or chat.
+8. Don't add comments to the generated code.
 ]],
       opts = {
         visible = false,
       },
     },
     {
-      role = "user",
+      role = constants.USER_ROLE,
       content = function(context)
         local code = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
 
         return fmt(
-          [[Please generate unit tests for this code from buffer %d:
+          [[
+Please generate unit tests for this code from buffer %d:
 
 ```%s
 %s
