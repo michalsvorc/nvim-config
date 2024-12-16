@@ -17,7 +17,7 @@ return {
   event = "VeryLazy",
   version = "*",
   dependencies = {
-    "nvim-lua/plenary.nvim",
+    { "nvim-lua/plenary.nvim", branch = "master" }, -- https://github.com/olimorris/codecompanion.nvim/tree/v10.7.0?tab=readme-ov-file#package-installation see Pinned plugins
     "nvim-treesitter/nvim-treesitter",
     "echasnovski/mini.diff",
   },
