@@ -1,6 +1,5 @@
 local M = {}
 
----Get the content of the buffer
 ---@param bufnr? integer
 ---@return string
 M.get_buffer_content = function(bufnr)

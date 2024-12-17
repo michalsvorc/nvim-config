@@ -1,6 +1,6 @@
 local M = {}
 
----Get the API key from an encrypted file
+-- Get the API key from an encrypted file
 ---@param encrypted_file_path string
 ---@return string | nil
 M.get_api_key = function(encrypted_file_path)
