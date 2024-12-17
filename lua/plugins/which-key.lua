@@ -51,6 +51,7 @@ return {
         { "<leader>s", group = "search" },
         { "<leader>t", group = "terminal", icon = { icon = "", color = "red" } },
         { "<leader>u", group = "ui", icon = { icon = "󰙵 ", color = "cyan" } },
+        { "<leader>y", group = "yank" },
         { "[", group = "prev" },
         { "]", group = "next" },
         { "g", group = "goto" },

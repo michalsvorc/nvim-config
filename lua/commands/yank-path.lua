@@ -1,18 +1,16 @@
+local path = require("modules.path")
 local types = {
   absolute = "absolute",
   relative = "relative",
   filename = "filename",
   cwd = "cwd",
 }
-
 local function set_register_and_print(path_type, content)
   vim.fn.setreg("+", content)
   print("Copied " .. path_type .. " path: " .. content)
 end
 
-local path = require("modules.path")
-
-vim.api.nvim_create_user_command("CopyPath", function(opts)
+local yank_path = function(opts)
   local file_path = vim.fn.expand("%:p")
   local valid_types = table.concat(vim.tbl_values(types), ", ")
 
@@ -31,7 +29,9 @@ vim.api.nvim_create_user_command("CopyPath", function(opts)
   else
     print("Invalid argument. Use one of: " .. valid_types)
   end
-end, {
+end
+
+vim.api.nvim_create_user_command("YankPath", yank_path, {
   nargs = 1,
   complete = function(_, _, _)
     return vim.tbl_values(types)
