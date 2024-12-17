@@ -6,7 +6,7 @@
 local adapter = vim.g.codecompanion_adapter
 local picker = "fzf_lua"
 local prompts = require("extras/ai/codecompanion/prompts")
-local get_api_key = require("lib.api_key").get_api_key
+local get_api_key = require("modules.api_key").get_api_key
 
 -- Expand 'cc' into 'CodeCompanion' in the command line
 vim.cmd([[cab cc CodeCompanion]])

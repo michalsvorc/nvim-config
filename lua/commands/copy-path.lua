@@ -10,7 +10,7 @@ local function set_register_and_print(path_type, content)
   print("Copied " .. path_type .. " path: " .. content)
 end
 
-local path = require("lib.path")
+local path = require("modules.path")
 
 vim.api.nvim_create_user_command("CopyPath", function(opts)
   local file_path = vim.fn.expand("%:p")

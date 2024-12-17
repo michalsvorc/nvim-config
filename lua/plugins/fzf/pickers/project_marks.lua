@@ -28,7 +28,7 @@ fzf.marks_global = function(opts)
 
   local entries = {}
   local pattern = opts.marks or "[A-Za-z]"
-  local project_root = require("lib.path").get_project_root()
+  local project_root = require("modules.path").get_project_root()
 
   for i = #marks, 3, -1 do
     local mark, line, col, text = marks[i]:match("(.)%s+(%d+)%s+(%d+)%s+(.*)")
