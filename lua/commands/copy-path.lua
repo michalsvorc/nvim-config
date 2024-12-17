@@ -10,13 +10,7 @@ local function set_register_and_print(path_type, content)
   print("Copied " .. path_type .. " path: " .. content)
 end
 
-local function get_project_root()
-  local project_root = LazyVim.root.get({ normalize = true })
-  if not project_root:match("/$") then
-    project_root = project_root .. "/"
-  end
-  return project_root
-end
+local path = require("lib.path")
 
 vim.api.nvim_create_user_command("CopyPath", function(opts)
   local file_path = vim.fn.expand("%:p")
@@ -25,14 +19,14 @@ vim.api.nvim_create_user_command("CopyPath", function(opts)
   if opts.args == types.absolute then
     set_register_and_print(types.absolute, file_path)
   elseif opts.args == types.relative then
-    local project_root = get_project_root()
-    local relative_path = string.sub(file_path, #project_root + 1)
+    local project_root = path.get_project_root()
+    local relative_path = string.gsub(file_path, "^" .. project_root .. "/", "")
     set_register_and_print(types.relative, relative_path)
   elseif opts.args == types.filename then
     local file_name = vim.fn.expand("%:t")
     set_register_and_print(types.filename, file_name)
   elseif opts.args == types.cwd then
-    local cwd = LazyVim.root.cwd()
+    local cwd = path.get_cwd()
     set_register_and_print(types.cwd, cwd)
   else
     print("Invalid argument. Use one of: " .. valid_types)

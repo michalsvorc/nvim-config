@@ -17,10 +17,6 @@ local core = fzf.core
 local path = fzf.path
 local utils = fzf.utils
 
-local function get_project_root()
-  return LazyVim.root.get({ normalize = true })
-end
-
 fzf.marks_global = function(opts)
   opts = config.normalize_opts(opts, "marks")
   if not opts then
@@ -32,7 +28,7 @@ fzf.marks_global = function(opts)
 
   local entries = {}
   local pattern = opts.marks or "[A-Za-z]"
-  local project_root = get_project_root()
+  local project_root = require("lib.path").get_project_root()
 
   for i = #marks, 3, -1 do
     local mark, line, col, text = marks[i]:match("(.)%s+(%d+)%s+(%d+)%s+(.*)")
