@@ -1,7 +1,8 @@
 local M = {}
 
----@param bufnr? integer
----@return string
+--- Returns the content of the buffer.
+--- @param bufnr? integer The buffer number. Default is the current buffer.
+--- @return string The content of the buffer.
 M.get_buffer_content = function(bufnr)
   bufnr = bufnr or vim.api.nvim_get_current_buf()
   vim.cmd([[normal! ggV]])

@@ -1,8 +1,8 @@
 local M = {}
 
--- Get the API key from an encrypted file
----@param encrypted_file_path string
----@return string | nil
+--- Get the API key from an encrypted file.
+--- @param encrypted_file_path string The path to the encrypted file.
+--- @return string | nil The API key or nil if the file does not exist or could not be decrypted.
 M.get_api_key = function(encrypted_file_path)
   local file = io.open(encrypted_file_path, "r")
   if not file then
