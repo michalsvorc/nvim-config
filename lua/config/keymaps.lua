@@ -203,6 +203,12 @@ map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
+-- yank
+map("n", "<leader>ya", "<cmd>YankPath absolute<cr>", { desc = "Absolute Path" })
+map("n", "<leader>yr", "<cmd>YankPath relative<cr>", { desc = "Relative Path" })
+map("n", "<leader>yf", "<cmd>YankPath filename<cr>", { desc = "Filename" })
+map("n", "<leader>yc", "<cmd>YankPath cwd<cr>", { desc = "CWD Path" })
+
 -- commands
 map("n", "<leader>;", ":<C-f>", { desc = "Commands" })
 
