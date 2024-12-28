@@ -1,8 +1,9 @@
 local m_quickfix = require("modules.quickfix")
 
 local quickfix_commands = {
-  add_current_entry = m_quickfix.add_current_entry,
+  add_current_position = m_quickfix.add_current_position,
   edit_all_entries = m_quickfix.edit_all_entries,
+  remove_entry = m_quickfix.remove_entry,
   toggle_window = m_quickfix.toggle_window,
 }
 

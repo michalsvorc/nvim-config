@@ -121,9 +121,12 @@ map("n", "<leader>L", "<cmd>LspInfo<cr>", { desc = "LSP Info" })
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
 -- quickfix
-map("n", "<leader>qa", "<cmd>Quickfix add_current_entry<cr>", { desc = "Add Current Entry" })
+map("n", "<leader>qa", "<cmd>Quickfix add_current_position<cr>", { desc = "Add Current Position" })
+map("n", "<leader>qd", "<cmd>Quickfix remove_entry<cr>", { desc = "Delete Entry" })
 map("n", "<leader>qe", "<cmd>Quickfix edit_all_entries<cr>", { desc = "Edit All Entries" })
 map("n", "<leader>qq", "<cmd>Quickfix toggle_window<cr>", { desc = "Toggle Window" })
+map("n", "<leader>qs", "<cmd>FzfLua quickfix<cr>", { desc = "Search List" })
+map("n", "<leader>qS", "<cmd>FzfLua quickfix_stack<cr>", { desc = "Search Stack" })
 map("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
 map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 map("n", "[Q", vim.cmd.colder, { desc = "Previous Quickfix List" })
