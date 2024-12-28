@@ -11,4 +11,16 @@ M.get_buffer_content = function(bufnr)
   return selected_text
 end
 
+--- Get the selected text in visual mode
+--- @return string The selected text.
+M.get_selected_text = function()
+  local mode = vim.api.nvim_get_mode().mode
+  local opts = {}
+  -- \22 is an escaped version of <c-v>
+  if mode == "v" or mode == "V" or mode == "\22" then
+    opts.type = mode
+  end
+  return vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."), opts)
+end
+
 return M
