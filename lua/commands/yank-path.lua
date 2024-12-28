@@ -7,7 +7,7 @@ local types = {
 }
 local function set_register_and_print(path_type, content)
   vim.fn.setreg("+", content)
-  print("Copied " .. path_type .. " path: " .. content)
+  vim.notify("Copied " .. path_type .. " path: " .. content, vim.log.levels.INFO)
 end
 
 local yank_path = function(opts)
@@ -27,7 +27,7 @@ local yank_path = function(opts)
     local cwd = path.get_cwd()
     set_register_and_print(types.cwd, cwd)
   else
-    print("Invalid argument. Use one of: " .. valid_types)
+    vim.notify("Invalid argument. Use one of: " .. valid_types, vim.log.levels.ERROR)
   end
 end
 

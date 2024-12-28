@@ -20,7 +20,7 @@ end
 
 M.add_current_position = function()
   if M.is_cursor_inside_window() == true then
-    vim.api.nvim_err_writeln("Move out of quickfix window.")
+    vim.notify("Move out of quickfix window.", vim.log.levels.WARN)
     return
   end
 
@@ -38,7 +38,7 @@ end
 
 M.remove_entry = function()
   if M.is_cursor_inside_window() == false then
-    vim.api.nvim_err_writeln("Not in a quickfix window.")
+    vim.notify("Not in a quickfix window.", vim.log.levels.WARN)
     return
   end
 
@@ -46,7 +46,7 @@ M.remove_entry = function()
   local current_index = vim.fn.line(".")
 
   if current_index < 1 or current_index > #qf_list then
-    vim.api.nvim_err_writeln("Invalid current entry.")
+    vim.notify("Invalid current entry.", vim.log.levels.ERROR)
     return
   end
 

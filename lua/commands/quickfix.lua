@@ -13,7 +13,7 @@ local function main(opts)
   if command then
     command()
   else
-    vim.api.nvim_err_writeln("Invalid Quickfix command: " .. subcommand)
+    vim.notify("Invalid Quickfix command: " .. subcommand, vim.log.levels.ERROR)
   end
 end
 

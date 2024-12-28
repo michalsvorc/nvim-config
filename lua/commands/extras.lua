@@ -5,7 +5,7 @@ local function handle_extras(action, args)
   local config_path = vim.fn.stdpath("config")
 
   if not extras[input] then
-    print("Error: '" .. input .. "' is not a valid extra.")
+    vim.notify(input .. " is not a valid extra.", vim.log.levels.ERROR)
     return
   end
 
@@ -14,16 +14,16 @@ local function handle_extras(action, args)
 
   if action == "enable" then
     os.execute("ln -sfn " .. source .. " " .. target)
-    print("Successfully enabled extra: '" .. input .. "'.")
+    vim.notify("Enabled extra: " .. input, vim.log.levels.INFO)
   elseif action == "disable" then
     if vim.loop.fs_stat(target) then
       os.execute("unlink " .. target)
-      print("Successfully disabled extra: '" .. input .. "'.")
+      vim.notify("Disabled extra: " .. input, vim.log.levels.INFO)
     else
-      print("Extra '" .. input .. "' is not currently enabled.")
+      vim.notify(input .. " is not currently enabled.", vim.log.levels.WARN)
     end
   else
-    print("Error: Invalid action '" .. action .. "'.")
+    vim.notify("Invalid action " .. action, vim.log.levels.ERROR)
   end
 end
 
