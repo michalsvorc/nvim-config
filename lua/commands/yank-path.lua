@@ -31,9 +31,11 @@ local yank_path = function(opts)
   end
 end
 
+local complete = function(_, _, _)
+  return vim.tbl_keys(types)
+end
+
 vim.api.nvim_create_user_command("YankPath", yank_path, {
   nargs = 1,
-  complete = function(_, _, _)
-    return vim.tbl_values(types)
-  end,
+  complete = complete,
 })
