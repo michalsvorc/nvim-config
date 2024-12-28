@@ -47,6 +47,7 @@ return {
         { "<leader>g", group = "git", icon = { icon = "󰊢 ", color = "orange" } },
         { "<leader>gs", group = "stash" },
         { "<leader>h", group = "hunks", icon = { icon = "󰊢 ", color = "orange" } },
+        { "<leader>q", group = "quickfix" },
         { "<leader>r", group = "refactor", icon = { icon = " ", color = "orange" } },
         { "<leader>s", group = "search" },
         { "<leader>t", group = "terminal", icon = { icon = "", color = "red" } },

@@ -121,9 +121,9 @@ map("n", "<leader>L", "<cmd>LspInfo<cr>", { desc = "LSP Info" })
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
 -- quickfix
-map("n", "<leader>qa", "<cmd>QuickfixAddCurrent<cr>", { desc = "Add Current" })
-map("n", "<leader>qq", "<cmd>QuickfixToggle<cr>", { desc = "Toggle" })
-map("n", "<leader>qe", "<cmd>QuickfixEditAsBuffers<cr>", { desc = "Edit as buffers" })
+map("n", "<leader>qa", "<cmd>Quickfix add_current_entry<cr>", { desc = "Add Current Entry" })
+map("n", "<leader>qe", "<cmd>Quickfix edit_all_entries<cr>", { desc = "Edit All Entries" })
+map("n", "<leader>qq", "<cmd>Quickfix toggle_window<cr>", { desc = "Toggle Window" })
 map("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
 map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 map("n", "[Q", vim.cmd.colder, { desc = "Previous Quickfix List" })

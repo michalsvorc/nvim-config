@@ -1,56 +1,28 @@
-local function quickfix_add_current()
-  local file = vim.fn.expand("%:p")
-  local line = vim.fn.line(".")
-  local col = vim.fn.col(".")
-  local text = vim.fn.getline(".")
-  local entry = {
-    filename = file,
-    lnum = line,
-    col = col,
-    text = text,
-  }
-  local qflist = vim.fn.getqflist()
+local m_quickfix = require("modules.quickfix")
 
-  if not qflist or type(qflist) ~= "table" then
-    qflist = {}
-  end
+local quickfix_commands = {
+  add_current_entry = m_quickfix.add_current_entry,
+  edit_all_entries = m_quickfix.edit_all_entries,
+  toggle_window = m_quickfix.toggle_window,
+}
 
-  table.insert(qflist, entry)
-  vim.fn.setqflist(qflist, "r")
-end
-
-local function edit_as_buffers()
-  local qflist = vim.fn.getqflist()
-  if vim.tbl_isempty(qflist) then
-    return
-  end
-
-  local prev_val = ""
-  for _, d in ipairs(qflist) do
-    local curr_val = vim.fn.bufname(d.bufnr)
-    if curr_val ~= prev_val then
-      vim.cmd("edit " .. curr_val)
-    end
-    prev_val = curr_val
+local function main(opts)
+  local subcommand = opts.args
+  local command = quickfix_commands[subcommand]
+  if command then
+    command()
+  else
+    vim.api.nvim_err_writeln("Invalid Quickfix command: " .. subcommand)
   end
 end
 
-local function toggle_qf_window()
-  local qf_exists = false
-  for _, win in pairs(vim.fn.getwininfo()) do
-    if win["quickfix"] == 1 then
-      qf_exists = true
-    end
-  end
-  if qf_exists == true then
-    vim.cmd("cclose")
-    return
-  end
-  if not vim.tbl_isempty(vim.fn.getqflist()) then
-    vim.cmd("copen")
-  end
+local function complete()
+  local keys = vim.tbl_keys(quickfix_commands)
+  table.sort(keys)
+  return keys
 end
 
-vim.api.nvim_create_user_command("QuickfixAddCurrent", quickfix_add_current, { nargs = 0 })
-vim.api.nvim_create_user_command("QuickfixEditAsBuffers", edit_as_buffers, { nargs = 0 })
-vim.api.nvim_create_user_command("QuickfixToggle", toggle_qf_window, { nargs = 0 })
+vim.api.nvim_create_user_command("Quickfix", main, {
+  nargs = 1,
+  complete = complete,
+})
