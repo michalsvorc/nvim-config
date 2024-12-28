@@ -1,3 +1,4 @@
+require("commands.buffer")
 require("commands.yank-path")
 require("commands.extras")
 require("commands.quickfix")
