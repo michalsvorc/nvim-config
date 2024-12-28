@@ -4,6 +4,7 @@
 -- https://github.com/olimorris/codecompanion.nvim/blob/main/lua/codecompanion/config.lua
 
 local adapter = vim.g.codecompanion_adapter
+local openai_model = vim.g.openai_model
 local picker = "fzf_lua"
 local prompts = require("extras/ai/codecompanion/prompts")
 local get_api_key = require("modules.api_key").get_api_key
@@ -28,14 +29,18 @@ return {
         end
 
         local api_key = get_api_key(vim.g.api_key_openai_path)
-
-        local adapter_settings = {
+        local options = {
           env = {
             api_key = api_key,
           },
+          schema = {
+            model = {
+              default = openai_model,
+            },
+          },
         }
 
-        return require("codecompanion.adapters").extend(adapter, adapter_settings)
+        return require("codecompanion.adapters").extend(adapter, options)
       end,
     },
     strategies = {
