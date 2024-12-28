@@ -35,20 +35,18 @@ local function extras_disable(args)
   handle_extras("disable", args)
 end
 
+local function complete()
+  local keys = vim.tbl_keys(extras)
+  table.sort(keys)
+  return keys
+end
+
 vim.api.nvim_create_user_command("ExtrasEnable", extras_enable, {
   nargs = 1,
-  complete = function()
-    local keys = vim.tbl_keys(extras)
-    table.sort(keys)
-    return keys
-  end,
+  complete = complete,
 })
 
 vim.api.nvim_create_user_command("ExtrasDisable", extras_disable, {
   nargs = 1,
-  complete = function()
-    local keys = vim.tbl_keys(extras)
-    table.sort(keys)
-    return keys
-  end,
+  complete = complete,
 })
