@@ -1,13 +1,9 @@
-vim.api.nvim_create_user_command("BuffMessages", function()
-  -- Create a new buffer
-  vim.cmd("enew")
+local m_buffer = require("modules.buffer")
 
-  -- Set the buffer as a temporary buffer
-  vim.bo.buftype = "nofile"
-  vim.bo.bufhidden = "hide"
-  vim.bo.swapfile = false
-
-  -- Populate the buffer with the output of :messages
+local function messages_to_buffer()
+  m_buffer.create_temp_buffer()
   local messages = vim.fn.execute("messages")
   vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(messages, "\n"))
-end, {})
+end
+
+vim.api.nvim_create_user_command("BufferizeMessages", messages_to_buffer, { nargs = 0 })

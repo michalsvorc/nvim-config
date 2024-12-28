@@ -1,5 +1,14 @@
 local M = {}
 
+--- Creates a new temporary buffer.
+--- @return nil
+M.create_temp_buffer = function()
+  vim.cmd("enew")
+  vim.bo.buftype = "nofile"
+  vim.bo.bufhidden = "hide"
+  vim.bo.swapfile = false
+end
+
 --- Returns the content of the buffer.
 --- @param bufnr? integer The buffer number. Default is the current buffer.
 --- @return string The content of the buffer.
