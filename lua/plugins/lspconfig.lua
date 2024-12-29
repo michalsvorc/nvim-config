@@ -14,10 +14,16 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/lsp/init.lua
+Added:
+  - declare vim as a global variable for Lua diagnostics
+Changed:
+  - path to LSP keymaps from lazyvim/plugins to plugins
 Removed:
-  - Deno project configuration
-  - Extracted cmdline tools and lsp servers to separate file
+  - deno project configuration
+  - extracted cmdline tools and lsp servers to separate file
 --]]
+
+local lsp_keymaps_path = "plugins.lsp.keymaps"
 
 return {
   "neovim/nvim-lspconfig",
@@ -32,6 +38,7 @@ return {
       -- options for vim.diagnostic.config()
       ---@type vim.diagnostic.Opts
       diagnostics = {
+        globals = { "vim" },
         underline = true,
         update_in_insert = false,
         virtual_text = {
@@ -112,6 +119,9 @@ return {
                 semicolon = "Disable",
                 arrayIndex = "Disable",
               },
+              diagnostics = {
+                globals = { "vim" },
+              },
             },
           },
         },
@@ -138,11 +148,11 @@ return {
 
     -- setup keymaps
     LazyVim.lsp.on_attach(function(client, buffer)
-      require("lazyvim.plugins.lsp.keymaps").on_attach(client, buffer)
+      require(lsp_keymaps_path).on_attach(client, buffer)
     end)
 
     LazyVim.lsp.setup()
-    LazyVim.lsp.on_dynamic_capability(require("lazyvim.plugins.lsp.keymaps").on_attach)
+    LazyVim.lsp.on_dynamic_capability(require(lsp_keymaps_path).on_attach)
 
     -- diagnostics signs
     if vim.fn.has("nvim-0.10.0") == 0 then

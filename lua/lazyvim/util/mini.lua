@@ -1,64 +1,5 @@
---[[
-Copyright 2024 https://github.com/folke
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/util/mini.lua
---]]
-
 ---@class lazyvim.util.mini
 local M = {}
-
----@alias Mini.ai.loc {line:number, col:number}
----@alias Mini.ai.region {from:Mini.ai.loc, to:Mini.ai.loc}
-
--- Mini.ai indent text object
--- For "a", it will include the non-whitespace line surrounding the indent block.
--- "a" is line-wise, "i" is character-wise.
-function M.ai_indent(ai_type)
-  local spaces = (" "):rep(vim.o.tabstop)
-  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
-  local indents = {} ---@type {line: number, indent: number, text: string}[]
-
-  for l, line in ipairs(lines) do
-    if not line:find("^%s*$") then
-      indents[#indents + 1] = { line = l, indent = #line:gsub("\t", spaces):match("^%s*"), text = line }
-    end
-  end
-
-  local ret = {} ---@type (Mini.ai.region | {indent: number})[]
-
-  for i = 1, #indents do
-    if i == 1 or indents[i - 1].indent < indents[i].indent then
-      local from, to = i, i
-      for j = i + 1, #indents do
-        if indents[j].indent < indents[i].indent then
-          break
-        end
-        to = j
-      end
-      from = ai_type == "a" and from > 1 and from - 1 or from
-      to = ai_type == "a" and to < #indents and to + 1 or to
-      ret[#ret + 1] = {
-        indent = indents[i].indent,
-        from = { line = indents[from].line, col = ai_type == "a" and 1 or indents[from].indent + 1 },
-        to = { line = indents[to].line, col = #indents[to].text },
-      }
-    end
-  end
-
-  return ret
-end
 
 -- taken from MiniExtra.gen_ai_spec.buffer
 function M.ai_buffer(ai_type)
@@ -110,6 +51,7 @@ function M.ai_whichkey(opts)
     { "}", desc = "{} with ws" },
   }
 
+  ---@type wk.Spec[]
   local ret = { mode = { "o", "x" } }
   ---@type table<string, string>
   local mappings = vim.tbl_extend("force", {}, {
@@ -139,7 +81,7 @@ end
 
 ---@param opts {skip_next: string, skip_ts: string[], skip_unbalanced: boolean, markdown: boolean}
 function M.pairs(opts)
-  LazyVim.toggle.map("<leader>up", {
+  Snacks.toggle({
     name = "Mini Pairs",
     get = function()
       return not vim.g.minipairs_disable
@@ -147,7 +89,8 @@ function M.pairs(opts)
     set = function(state)
       vim.g.minipairs_disable = not state
     end,
-  })
+  }):map("<leader>up")
+
   local pairs = require("mini.pairs")
   pairs.setup(opts)
   local open = pairs.open

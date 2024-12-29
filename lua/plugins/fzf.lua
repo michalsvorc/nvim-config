@@ -25,7 +25,7 @@ Removed:
 Changed:
   - extracted keymaps to separate file
   - stylua formatting
-  - path to LSP keymaps
+  - path to LSP keymaps from lazyvim/plugins to plugins
   - window dimensions
   - use live_grep_glob for grep commands
   - fzf layout
@@ -34,6 +34,7 @@ Added:
   - buffer picker
   - loading of custom pickers
 --]]
+local lsp_keymaps_path = "plugins.lsp.keymaps"
 
 -- https://github.com/ibhagwan/fzf-lua
 -- Improved fzf.vim written in lua.
@@ -197,7 +198,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function()
-      local Keys = require("lazyvim.plugins.lsp.keymaps").get()
+      local Keys = require(lsp_keymaps_path).get()
       vim.list_extend(Keys, keymaps.lsp)
     end,
   },

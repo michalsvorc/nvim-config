@@ -9,9 +9,10 @@
 - [fd](https://github.com/sharkdp/fd)
 - [NerdFont](https://github.com/ryanoasis/nerd-fonts)
 
-## Acknowledgments
+## LazyVim
 
-This project is inspired by and incorporates configuration files from the [LazyVim](https://github.com/LazyVim/LazyVim/) repository.
+This configuration is built on [LazyVim](https://github.com/LazyVim/LazyVim/), but it does not use [the starter template](https://github.com/LazyVim/starter) or LazyVim as a plugin.
+Instead, it directly loads LazyVim configuration files from lua/lazyvim, providing greater flexibility for customization.
 
 ## Local configuration
 

@@ -1,21 +1,3 @@
---[[
-Copyright 2024 https://github.com/folke
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/util/root.lua
---]]
-
 ---@class lazyvim.util.root
 ---@overload fun(): string
 local M = setmetatable({}, {
@@ -47,7 +29,11 @@ function M.detectors.lsp(buf)
     return {}
   end
   local roots = {} ---@type string[]
-  for _, client in pairs(LazyVim.lsp.get_clients({ bufnr = buf })) do
+  local clients = LazyVim.lsp.get_clients({ bufnr = buf })
+  clients = vim.tbl_filter(function(client)
+    return not vim.tbl_contains(vim.g.root_lsp_ignore or {}, client.name)
+  end, clients)
+  for _, client in pairs(clients) do
     local workspace = client.config.workspace_folders
     for _, ws in pairs(workspace or {}) do
       roots[#roots + 1] = vim.uri_to_fname(ws.uri)

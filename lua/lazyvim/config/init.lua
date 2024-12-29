@@ -1,42 +1,31 @@
---[[
-Copyright 2024 https://github.com/folke
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/init.lua
-Removed:
-  - version
-  - news
-  - colorscheme loading
-  - processing lazyvim.json
-  - LazyExtras command registration
---]]
-
 _G.LazyVim = require("lazyvim.util")
 
 ---@class LazyVimConfig: LazyVimOptions
 local M = {}
 
+M.version = "14.6.0" -- x-release-please-version
 LazyVim.config = M
 
 ---@class LazyVimOptions
 local defaults = {
+  -- colorscheme can be a string like `catppuccin` or a function that will load the colorscheme
+  ---@type string|fun()
+  colorscheme = function()
+    require("tokyonight").load()
+  end,
   -- load the default settings
   defaults = {
     autocmds = true, -- lazyvim.config.autocmds
     keymaps = true, -- lazyvim.config.keymaps
     -- lazyvim.config.options can't be configured here since that's loaded before lazyvim setup
     -- if you want to disable loading options, add `package.loaded["lazyvim.config.options"] = true` to the top of your init.lua
+  },
+  news = {
+    -- When enabled, NEWS.md will be shown when changed.
+    -- This only contains big new features and breaking changes.
+    lazyvim = true,
+    -- Same but for Neovim's news.txt
+    neovim = false,
   },
   -- icons used by other plugins
   -- stylua: ignore
@@ -96,9 +85,10 @@ local defaults = {
       Package       = " ",
       Property      = " ",
       Reference     = " ",
-      Snippet       = " ",
+      Snippet       = "󱄽 ",
       String        = " ",
       Struct        = "󰆼 ",
+      Supermaven    = " ",
       TabNine       = "󰏚 ",
       Text          = " ",
       TypeParameter = " ",
@@ -145,6 +135,31 @@ local defaults = {
   },
 }
 
+M.json = {
+  version = 7,
+  path = vim.g.lazyvim_json or vim.fn.stdpath("config") .. "/lazyvim.json",
+  data = {
+    version = nil, ---@type string?
+    news = {}, ---@type table<string, string>
+    extras = {}, ---@type string[]
+  },
+}
+
+function M.json.load()
+  local f = io.open(M.json.path, "r")
+  if f then
+    local data = f:read("*a")
+    f:close()
+    local ok, json = pcall(vim.json.decode, data, { luanil = { object = true, array = true } })
+    if ok then
+      M.json.data = vim.tbl_deep_extend("force", M.json.data, json or {})
+      if M.json.data.version ~= M.json.version then
+        LazyVim.json.migrate()
+      end
+    end
+  end
+end
+
 ---@type LazyVimOptions
 local options
 local lazy_clipboard
@@ -173,7 +188,12 @@ function M.setup(opts)
       end
 
       LazyVim.format.setup()
+      LazyVim.news.setup()
       LazyVim.root.setup()
+
+      vim.api.nvim_create_user_command("LazyExtras", function()
+        LazyVim.extras.show()
+      end, { desc = "Manage LazyVim extras" })
 
       vim.api.nvim_create_user_command("LazyHealth", function()
         vim.cmd([[Lazy! load all]])
@@ -188,6 +208,22 @@ function M.setup(opts)
       })
     end,
   })
+
+  LazyVim.track("colorscheme")
+  LazyVim.try(function()
+    if type(M.colorscheme) == "function" then
+      M.colorscheme()
+    else
+      vim.cmd.colorscheme(M.colorscheme)
+    end
+  end, {
+    msg = "Could not load your colorscheme",
+    on_error = function(msg)
+      LazyVim.error(msg)
+      vim.cmd.colorscheme("habamax")
+    end,
+  })
+  LazyVim.track()
 end
 
 ---@param buf? number
@@ -263,6 +299,7 @@ function M.init()
   end
 
   LazyVim.plugin.setup()
+  M.json.load()
 end
 
 setmetatable(M, {

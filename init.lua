@@ -1,4 +1,14 @@
+-- package manager
 require(".lazy")
-require(".lazyvim")
-vim.cmd.colorscheme("catppuccin")
+
+-- LazyVim config
+local LazyVim = require(".lazyvim")
+LazyVim.setup({
+  colorscheme = "catppuccin",
+  news = {
+    lazyvim = false,
+    neovim = false,
+  },
+})
+
 require(".commands")

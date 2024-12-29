@@ -1,21 +1,3 @@
---[[
-Copyright 2024 https://github.com/folke
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/util/init.lua
---]]
-
 local LazyUtil = require("lazy.core.util")
 
 ---@class lazyvim.util: LazyUtilCore
@@ -24,8 +6,6 @@ local LazyUtil = require("lazy.core.util")
 ---@field lsp lazyvim.util.lsp
 ---@field root lazyvim.util.root
 ---@field terminal lazyvim.util.terminal
----@field lazygit lazyvim.util.lazygit
----@field toggle lazyvim.util.toggle
 ---@field format lazyvim.util.format
 ---@field plugin lazyvim.util.plugin
 ---@field extras lazyvim.util.extras
@@ -38,36 +18,17 @@ local LazyUtil = require("lazy.core.util")
 ---@field cmp lazyvim.util.cmp
 local M = {}
 
----@type table<string, string|string[]>
-local deprecated = {
-  get_clients = "lsp",
-  on_attach = "lsp",
-  on_rename = "lsp",
-  root_patterns = { "root", "patterns" },
-  get_root = { "root", "get" },
-  float_term = { "terminal", "open" },
-  toggle_diagnostics = { "toggle", "diagnostics" },
-  toggle_number = { "toggle", "number" },
-  fg = "ui",
-  telescope = "pick",
-}
-
 setmetatable(M, {
   __index = function(t, k)
     if LazyUtil[k] then
       return LazyUtil[k]
     end
-    local dep = deprecated[k]
-    if dep then
-      local mod = type(dep) == "table" and dep[1] or dep
-      local key = type(dep) == "table" and dep[2] or k
-      M.deprecate([[LazyVim.]] .. k, [[LazyVim.]] .. mod .. "." .. key)
-      ---@diagnostic disable-next-line: no-unknown
-      t[mod] = require("lazyvim.util." .. mod) -- load here to prevent loops
-      return t[mod][key]
+    if k == "lazygit" or k == "toggle" then -- HACK: special case for lazygit
+      return M.deprecated[k]()
     end
     ---@diagnostic disable-next-line: no-unknown
     t[k] = require("lazyvim.util." .. k)
+    M.deprecated.decorate(k, t[k])
     return t[k]
   end,
 })
@@ -302,6 +263,15 @@ function M.memoize(fn)
     end
     return cache[fn][key]
   end
+end
+
+---@return "nvim-cmp" | "blink.cmp"
+function M.cmp_engine()
+  vim.g.lazyvim_cmp = vim.g.lazyvim_cmp or "auto"
+  if vim.g.lazyvim_cmp == "auto" then
+    return LazyVim.has_extra("coding.nvim-cmp") and "nvim-cmp" or "blink.cmp"
+  end
+  return vim.g.lazyvim_cmp
 end
 
 return M

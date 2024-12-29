@@ -1,3 +1,6 @@
+-- Initialize LazyVim configuration
+require("lazyvim.config").init()
+
 -- https://github.com/folke/snacks.nvim
 -- A collection of small QoL plugins for Neovim.
 return {

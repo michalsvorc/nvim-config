@@ -1,25 +1,3 @@
---[[
-Copyright 2024 https://github.com/folke
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/lsp/keymaps.lua
-Removed:
-  - keys:
-    - Goto ...
-    - Code action
---]]
-
 local M = {}
 
 ---@type LazyKeysLspSpec[]|nil
@@ -36,22 +14,28 @@ function M.get()
     -- stylua: ignore
     M._keys =  {
       { "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
-      { "K", vim.lsp.buf.hover, desc = "Hover" },
-      { "gK", vim.lsp.buf.signature_help, desc = "Signature Help", has = "signatureHelp" },
-      { "<c-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help", has = "signatureHelp" },
+      { "gd", vim.lsp.buf.definition, desc = "Goto Definition", has = "definition" },
+      { "gr", vim.lsp.buf.references, desc = "References", nowait = true },
+      { "gI", vim.lsp.buf.implementation, desc = "Goto Implementation" },
+      { "gy", vim.lsp.buf.type_definition, desc = "Goto T[y]pe Definition" },
+      { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
+      { "K", function() return vim.lsp.buf.hover() end, desc = "Hover" },
+      { "gK", function() return vim.lsp.buf.signature_help() end, desc = "Signature Help", has = "signatureHelp" },
+      { "<c-k>", function() return vim.lsp.buf.signature_help() end, mode = "i", desc = "Signature Help", has = "signatureHelp" },
+      { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" },
       { "<leader>cc", vim.lsp.codelens.run, desc = "Run Codelens", mode = { "n", "v" }, has = "codeLens" },
       { "<leader>cC", vim.lsp.codelens.refresh, desc = "Refresh & Display Codelens", mode = { "n" }, has = "codeLens" },
-      { "<leader>cR", LazyVim.lsp.rename_file, desc = "Rename File", mode ={"n"}, has = { "workspace/didRenameFiles", "workspace/willRenameFiles" } },
+      { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File", mode ={"n"}, has = { "workspace/didRenameFiles", "workspace/willRenameFiles" } },
       { "<leader>cr", vim.lsp.buf.rename, desc = "Rename", has = "rename" },
       { "<leader>cA", LazyVim.lsp.action.source, desc = "Source Action", has = "codeAction" },
-      { "]]", function() LazyVim.lsp.words.jump(vim.v.count1) end, has = "documentHighlight",
-        desc = "Next Reference", cond = function() return LazyVim.lsp.words.enabled end },
-      { "[[", function() LazyVim.lsp.words.jump(-vim.v.count1) end, has = "documentHighlight",
-        desc = "Prev Reference", cond = function() return LazyVim.lsp.words.enabled end },
-      { "<a-n>", function() LazyVim.lsp.words.jump(vim.v.count1, true) end, has = "documentHighlight",
-        desc = "Next Reference", cond = function() return LazyVim.lsp.words.enabled end },
-      { "<a-p>", function() LazyVim.lsp.words.jump(-vim.v.count1, true) end, has = "documentHighlight",
-        desc = "Prev Reference", cond = function() return LazyVim.lsp.words.enabled end },
+      { "]]", function() Snacks.words.jump(vim.v.count1) end, has = "documentHighlight",
+        desc = "Next Reference", cond = function() return Snacks.words.is_enabled() end },
+      { "[[", function() Snacks.words.jump(-vim.v.count1) end, has = "documentHighlight",
+        desc = "Prev Reference", cond = function() return Snacks.words.is_enabled() end },
+      { "<a-n>", function() Snacks.words.jump(vim.v.count1, true) end, has = "documentHighlight",
+        desc = "Next Reference", cond = function() return Snacks.words.is_enabled() end },
+      { "<a-p>", function() Snacks.words.jump(-vim.v.count1, true) end, has = "documentHighlight",
+        desc = "Prev Reference", cond = function() return Snacks.words.is_enabled() end },
     }
 
   return M._keys
@@ -83,7 +67,7 @@ function M.resolve(buffer)
   if not Keys.resolve then
     return {}
   end
-  local spec = M.get()
+  local spec = vim.tbl_extend("force", {}, M.get())
   local opts = LazyVim.opts("nvim-lspconfig")
   local clients = LazyVim.lsp.get_clients({ bufnr = buffer })
   for _, client in ipairs(clients) do

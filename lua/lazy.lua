@@ -16,11 +16,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Make sure to setup `mapleader` and `maplocalleader` before
--- loading lazy.nvim so that mappings are correct.
--- This is also a good place to setup other settings (vim.opt)
-require("config.options")
-
 -- Set paths
 require("config.paths")
 
@@ -29,9 +24,6 @@ require("config.plugins")
 
 -- Local options for overrides, not tracked by version control
 pcall(require, "config._local")
-
--- Make LazyVim utility available to plugins
-_G.LazyVim = require("lazyvim.util")
 
 -- Register events for lazy.nvim
 local Event = require("lazy.core.handler.event")
@@ -44,8 +36,6 @@ Event.mappings["User LazyFile"] = Event.mappings.LazyFile
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
-    { import = "plugins/treesitter" },
-    { import = "plugins/lsp" },
     { import = "plugins" },
     { import = "plugins/_local" },
   },

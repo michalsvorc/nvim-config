@@ -1,21 +1,3 @@
---[[
-Copyright 2024 https://github.com/folke
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/util/format.lua
---]]
-
 ---@class lazyvim.util.format
 ---@overload fun(opts?: {force?:boolean})
 local M = setmetatable({}, {
@@ -193,6 +175,22 @@ function M.setup()
   vim.api.nvim_create_user_command("LazyFormatInfo", function()
     M.info()
   end, { desc = "Show info about the formatters for the current buffer" })
+end
+
+---@param buf? boolean
+function M.snacks_toggle(buf)
+  return Snacks.toggle({
+    name = "Auto Format (" .. (buf and "Buffer" or "Global") .. ")",
+    get = function()
+      if not buf then
+        return vim.g.autoformat == nil or vim.g.autoformat
+      end
+      return LazyVim.format.enabled()
+    end,
+    set = function(state)
+      LazyVim.format.enable(state, buf)
+    end,
+  })
 end
 
 return M
