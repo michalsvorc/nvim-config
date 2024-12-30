@@ -14,10 +14,9 @@ local function toggleFugitive()
   end
 end
 
-vim.api.nvim_create_user_command("ToggleGit", toggleFugitive, {})
-
 return {
   "tpope/vim-fugitive",
+  version = "*",
   event = "LazyFile",
   -- stylua: ignore
   keys = {
@@ -25,7 +24,7 @@ return {
     { "<leader>gB", function() vim.cmd("Git blame") end, desc = "Blame" },
     { "<leader>gc", function() vim.cmd("vert Git commit") end, desc = "Commit" },
     { "<leader>gd", function() vim.cmd("Gvdiffsplit") end, desc = "Diff" },
-    { "<leader>gg", "<cmd>ToggleGit<cr>", desc = "Git Client" },
+    { "<leader>gg", toggleFugitive, desc = "Git Client" },
     { "<leader>gl", function() vim.cmd("vert Git log") end, desc = "Log" },
     { "<leader>gp", function() vim.cmd("Git pull") end, desc = "Pull" },
     { "<leader>gP", function() vim.cmd("Git push") end, desc = "Push" },
@@ -34,6 +33,6 @@ return {
     { "<leader>gsm", ':call feedkeys(":Git stash -m ", "n")<CR>', desc = "Stash with Message" },
     { "<leader>gw", function() vim.cmd("Gwrite") end, desc = "Write" },
     -- quick keys
-    { "<leader>1", "<cmd>ToggleGit<cr>", desc = "Git Client" },
+    { "<leader>1", toggleFugitive, desc = "Git Client" },
   },
 }
