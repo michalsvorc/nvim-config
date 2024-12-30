@@ -33,6 +33,7 @@ Changed:
 Added:
   - buffer picker
   - loading of custom pickers
+  - register FzfLua to handle vim.ui.select
 --]]
 local lsp_keymaps_path = "plugins.lsp.keymaps"
 
@@ -193,6 +194,8 @@ return {
     keys = keymaps.base,
     init = function()
       require("plugins.fzf.pickers")
+      -- register FzfLua to handle vim.ui.select
+      vim.cmd("FzfLua register_ui_select")
     end,
   },
   {
