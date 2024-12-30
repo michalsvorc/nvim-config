@@ -1,5 +1,7 @@
 local M = {}
 
+--- Checks if the quickfix window is currently open.
+--- @return boolean True if the quickfix window is open, false otherwise.
 M.is_window_open = function()
   local windows = vim.fn.getwininfo()
   for _, win in ipairs(windows) do
@@ -10,6 +12,8 @@ M.is_window_open = function()
   return false
 end
 
+--- Determines if the cursor is inside the quickfix window.
+--- @return boolean True if the cursor is in a quickfix window, false otherwise.
 M.is_cursor_inside_window = function()
   if vim.bo.buftype ~= "quickfix" then
     return false
@@ -18,6 +22,8 @@ M.is_cursor_inside_window = function()
   return true
 end
 
+--- Adds the current position from the buffer to the quickfix list.
+--- If the cursor is inside the quickfix window, a warning is displayed.
 M.add_current_position = function()
   if M.is_cursor_inside_window() == true then
     vim.notify("Move out of quickfix window.", vim.log.levels.WARN)
@@ -36,6 +42,8 @@ M.add_current_position = function()
   vim.fn.setqflist(qf_list, "r")
 end
 
+--- Removes the current entry from the quickfix list.
+--- If not in a quickfix window or the current entry is invalid, a notification is displayed.
 M.remove_entry = function()
   if M.is_cursor_inside_window() == false then
     vim.notify("Not in a quickfix window.", vim.log.levels.WARN)
@@ -55,6 +63,7 @@ M.remove_entry = function()
   vim.fn.setqflist(qf_list, "r")
 end
 
+--- Iterates through the quickfix list and opens each buffer.
 M.edit_all_entries = function()
   if M.is_cursor_inside_window() == false then
     return
@@ -75,6 +84,7 @@ M.edit_all_entries = function()
   end
 end
 
+--- Toggles the visibility of the quickfix window.
 M.toggle_window = function()
   local is_window_open = M.is_window_open()
 

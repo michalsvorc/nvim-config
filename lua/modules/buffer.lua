@@ -1,7 +1,6 @@
 local M = {}
 
 --- Creates a new temporary buffer.
---- @return nil
 M.create_temp_buffer = function()
   vim.cmd("enew")
   vim.bo.buftype = "nofile"
