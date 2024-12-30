@@ -1,18 +1,17 @@
 # Neovim configuration
 
+Based on [LazyVim/starter](https://github.com/LazyVim/starter) with custom loading of [LazyVim](https://github.com/LazyVim/LazyVim) configs and plugins.
+
+Maintains custom extra plugins with `:ExtrasEnable` command.
+
 ## Dependencies
 
-- Neovim >=0.11
+- [Neovim](https://neovim.io/) >=0.11
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [fzf](https://github.com/junegunn/fzf)
 - [npm](https://github.com/npm/cli)
 - [fd](https://github.com/sharkdp/fd)
 - [NerdFont](https://github.com/ryanoasis/nerd-fonts)
-
-## LazyVim
-
-This configuration is built on [LazyVim](https://github.com/LazyVim/LazyVim/), but it does not use [the starter template](https://github.com/LazyVim/starter) or LazyVim as a plugin.
-Instead, it directly loads LazyVim configuration files from lua/lazyvim, providing greater flexibility for customization.
 
 ## Local configuration
 

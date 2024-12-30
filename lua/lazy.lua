@@ -1,4 +1,4 @@
--- Bootstrap lazy.nvim
+-- Bootstrap lazy.nvim.
 -- https://lazy.folke.io/installation
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -16,26 +16,18 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Set paths
+-- Load config files.
+-- set paths
 require("config.paths")
-
--- Plugin options
+-- plugin options
 require("config.plugins")
-
--- Local options for overrides, not tracked by version control
+-- local options for overrides, not tracked by version control
 pcall(require, "config._local")
 
--- Register events for lazy.nvim
-local Event = require("lazy.core.handler.event")
-
---- Add support for the LazyFile event
-local lazy_file_events = { "BufReadPost", "BufNewFile", "BufWritePre" }
-Event.mappings.LazyFile = { id = "LazyFile", event = lazy_file_events }
-Event.mappings["User LazyFile"] = Event.mappings.LazyFile
-
--- Setup lazy.nvim
+-- Setup lazy.nvim.
 require("lazy").setup({
   spec = {
+    { "LazyVim/LazyVim" },
     { import = "plugins" },
     { import = "plugins/_local" },
   },

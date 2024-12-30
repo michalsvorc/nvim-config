@@ -1,11 +1,32 @@
--- Initialize LazyVim configuration
 require("lazyvim.config").init()
 
--- https://github.com/folke/snacks.nvim
--- A collection of small QoL plugins for Neovim.
 return {
-  "folke/snacks.nvim",
-  priority = 1000,
-  lazy = false,
-  opts = {},
+  { "folke/lazy.nvim", version = "*" },
+  {
+    "LazyVim/LazyVim",
+    priority = 10000,
+    lazy = false,
+    opts = {},
+    cond = true,
+    version = "*",
+    config = function()
+      require(".lazyvim").setup({
+        colorscheme = "catppuccin",
+        defaults = {
+          autocmds = true,
+          keymaps = false,
+        },
+        news = {
+          lazyvim = false,
+          neovim = false,
+        },
+      })
+    end,
+  },
+  {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    opts = {},
+  },
 }
