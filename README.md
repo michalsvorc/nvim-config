@@ -23,6 +23,13 @@ Enables local overrides for config options.
 
 Facilitates adding local plugin specifications. Any plugin specifications placed in this directory are not tracked by version control.
 
+## Custom snippets
+
+Custom snippets are placed in `./snippets` directory.
+
+- [vscode snippet spec](https://code.visualstudio.com/docs/editor/userdefinedsnippets)
+- [friendly-snippets examples](https://github.com/rafamadriz/friendly-snippets/tree/main/snippets)
+
 ## References
 
 ### LazyVim
