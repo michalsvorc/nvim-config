@@ -1,4 +1,4 @@
--- Bootstrap lazy.nvim.
+-- bootstrap lazy.nvim
 -- https://lazy.folke.io/installation
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -16,17 +16,11 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Load config files.
--- set paths
-require("config.paths")
--- plugin options
-require("config.plugins")
--- local options for overrides, not tracked by version control
-pcall(require, "config._local")
-
--- Setup lazy.nvim.
+-- setup lazy.nvim
+-- https://github.com/LazyVim/starter/blob/main/lua/config/lazy.lua
 require("lazy").setup({
   spec = {
+    -- add LazyVim without importing its plugins
     { "LazyVim/LazyVim" },
     { import = "plugins" },
     { import = "plugins/_local" },
