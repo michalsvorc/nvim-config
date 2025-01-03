@@ -13,10 +13,10 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/editor/fzf.lua
+Source: https://github.com/LazyVim/LazyVim/blob/v14.6.0/lua/lazyvim/plugins/extras/editor/fzf.lua#L208
 
 Removed:
-  - Switch Buffer
+  - switch buffer
 Changed:
   - grep actions
   - jumplist
@@ -25,10 +25,8 @@ Added:
   - search git objects
   - search current buffer
   - lsp actions
-  - Recent files shortcut
+  - recent files shortcut
 --]]
-
-local winopts = require("plugins.fzf.winopts")
 
 local function symbols_filter(entry, ctx)
   if ctx.symbols_filter == nil then
@@ -47,7 +45,7 @@ M.base = {
   { "<c-j>", "<c-j>", ft = "fzf", mode = "t", nowait = true },
   { "<c-k>", "<c-k>", ft = "fzf", mode = "t", nowait = true },
   -- quick keys
-  { "<leader><", function() require("fzf-lua").buffers({ sort_mru = true, sort_lastused = true, winopts = winopts.small_window, }) end, desc = "Buffers", },
+  { "<leader><", function() require("fzf-lua").buffers({ sort_mru = true, sort_lastused = true }) end, desc = "Buffers", },
   { "<leader>.", LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
   { "<leader>>", function() require("fzf-lua").oldfiles({fzf_opts = { ['--query'] = '!~ ' }}) end, desc = "Recent Files (Project)" },
   { "<leader>?", LazyVim.pick("grep_cword"), mode = "n", desc = "Grep Word (Root Dir)" },
@@ -121,13 +119,14 @@ M.base = {
 M.lsp = {
   { "<leader>l", "<cmd>FzfLua lsp_finder<cr>",                                                        desc = "LSP Finder" },
   { "gl", "<cmd>FzfLua lsp_finder<cr>",                                                               desc = "LSP Finder" },
-  -- { "gd", "<cmd>FzfLua lsp_definitions     jump_to_single_result=true ignore_current_line=true<cr>",  desc = "LSP Definition", has = "definition" },
-  -- { "gD", "<cmd>FzfLua lsp_declarations    jump_to_single_result=true ignore_current_line=true<cr>",  desc = "LSP Declaration", has = "declaration" },
-  -- { "gr", "<cmd>FzfLua lsp_references      jump_to_single_result=true ignore_current_line=true<cr>",  desc = "LSP References", nowait = true },
-  -- { "gI", "<cmd>FzfLua lsp_implementations jump_to_single_result=true ignore_current_line=true<cr>",  desc = "LSP Implementation" },
   { "gt", "<cmd>FzfLua lsp_typedefs        jump_to_single_result=true ignore_current_line=true<cr>",  desc = "LSP Type Definition" },
   { "ga", "<cmd>FzfLua lsp_incoming_calls  jump_to_single_result=false<cr>",                          desc = "LSP Incoming Calls", has = "callHierarchy/incomingCalls" },
   { "gA", "<cmd>FzfLua lsp_outgoing_calls  jump_to_single_result=false<cr>",                          desc = "LSP Outgoing Calls", has = "callHierarchy/outgoingCalls" },
+  -- https://github.com/LazyVim/LazyVim/blob/v14.6.0/lua/lazyvim/plugins/extras/editor/fzf.lua#L290
+  { "gd", "<cmd>FzfLua lsp_definitions     jump_to_single_result=true ignore_current_line=true<cr>", desc = "Goto Definition", has = "definition" },
+  { "gr", "<cmd>FzfLua lsp_references      jump_to_single_result=true ignore_current_line=true<cr>", desc = "References", nowait = true },
+  { "gI", "<cmd>FzfLua lsp_implementations jump_to_single_result=true ignore_current_line=true<cr>", desc = "Goto Implementation" },
+  { "gy", "<cmd>FzfLua lsp_typedefs        jump_to_single_result=true ignore_current_line=true<cr>", desc = "Goto T[y]pe Definition" },
 }
 
 return M

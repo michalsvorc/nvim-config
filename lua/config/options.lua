@@ -13,20 +13,21 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
+Source: https://github.com/LazyVim/LazyVim/blob/v14.6.0/lua/lazyvim/config/options.lua
 
 Added:
-  - Symbols for displaying invisible characters.
-  - Vim navigation for fzf results.
-  - Enable spellchecking.
+  - symbols for displaying invisible characters
+  - vim navigation for fzf results
+  - enable spellchecking
 Changed:
-  - Leader keys.
-  - Conceal level set to 0. No hiding occurs.
-  - Enable the default ruler.
-  - Disable all snacks animations.
-  - Set LazyVim picker to "fzf".
-  - Set LazyVim completion engine to "nvim-cmp".
+  - Leader keys
+  - conceal level set to 0, no hiding occurs
+  - enable the default ruler
+  - disable all snacks animations
+  - set LazyVim picker to "fzf"
+  - set LazyVim completion engine to "nvim-cmp"
 --]]
+
 -- This file is automatically loaded by plugins.core before lazy.nvim startup.
 
 -- Leader keys.

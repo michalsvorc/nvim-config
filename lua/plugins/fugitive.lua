@@ -16,7 +16,6 @@ end
 
 return {
   "tpope/vim-fugitive",
-  version = "*",
   event = "LazyFile",
   -- stylua: ignore
   keys = {

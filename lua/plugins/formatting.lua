@@ -13,11 +13,15 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/formatting.lua
+Source: https://github.com/LazyVim/LazyVim/blob/v14.6.0/lua/lazyvim/plugins/formatting.lua
+
+Removed:
+  - lazy loading, use default value
 --]]
 
 -- https://github.com/stevearc/conform.nvim
 -- Lightweight yet powerful formatter.
+
 local M = {}
 
 ---@param opts conform.setupOpts
@@ -41,7 +45,6 @@ return {
   {
     "stevearc/conform.nvim",
     dependencies = { "mason.nvim" },
-    lazy = true,
     cmd = "ConformInfo",
     keys = {
       {
@@ -92,6 +95,7 @@ return {
         },
         formatters_by_ft = {
           lua = { "stylua" },
+          fish = { "fish_indent" },
           sh = { "shfmt" },
         },
         -- The options you set here will be merged with the builtin formatters.

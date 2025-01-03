@@ -13,12 +13,18 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/lang/vue.lua
-Removed:
-  - recommend function
---]]
-return {
+Source: https://github.com/LazyVim/LazyVim/blob/v14.6.0/lua/lazyvim/plugins/extras/lang/vue.lua
 
+Added:
+  - fix comments in template blocks
+Changed:
+  - typesctript extra import path
+Removed:
+  - recommended function
+  - lazy loading, use default value
+--]]
+
+return {
   -- depends on the typescript extra
   { import = "extras.lang.typescript" },
 
@@ -66,7 +72,6 @@ return {
   -- https://github.com/LazyVim/LazyVim/blob/274649e92321d615888f889476c9329f8d831e8e/lua/lazyvim/plugins/coding.lua#L162-L172
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
-    lazy = true,
     opts = {
       enable_autocmd = false,
     },

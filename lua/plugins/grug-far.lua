@@ -1,5 +1,6 @@
 -- https://github.com/MagicDuck/grug-far.nvim
 -- Find And Replace plugin.
+
 local buffer_extension = function()
   local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
   return ext and ext ~= "" and "*." .. ext or nil
@@ -7,6 +8,7 @@ end
 
 return {
   "MagicDuck/grug-far.nvim",
+  version = false,
   cmd = "GrugFar",
   opts = {
     headerMaxWidth = 80,
@@ -28,11 +30,7 @@ return {
     {
       "<leader>sr",
       function()
-        local opts = {
-          prefills = {
-            search = vim.fn.expand("<cword>"),
-          },
-        }
+        local opts = { prefills = { search = vim.fn.expand("<cword>") } }
         require("grug-far").grug_far(opts)
       end,
       mode = "v",

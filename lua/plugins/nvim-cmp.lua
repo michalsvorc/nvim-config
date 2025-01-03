@@ -13,16 +13,21 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/coding.lua
+Source: https://github.com/LazyVim/LazyVim/blob/v14.6.0/lua/lazyvim/plugins/extras/coding/nvim-cmp.lua
+
 Added:
   - option to toggle automatic opening of completion pop-up
 Changed:
   - split to a separate module
+  - keymaps to select next/previous item
   - replace Tab key mappings
+  - increase widths of abbr and menu
+Removed:
+  - blink.cmp declaration
 --]]
 
 return {
-  -- Auto completion
+  -- Setup nvim-cmp
   {
     "hrsh7th/nvim-cmp",
     version = false, -- last release is way too old
@@ -54,10 +59,10 @@ return {
         },
         preselect = auto_select and cmp.PreselectMode.Item or cmp.PreselectMode.None,
         mapping = cmp.mapping.preset.insert({
-          ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-          ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
+          ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+          ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<CR>"] = LazyVim.cmp.confirm({ select = auto_select }),
           ["<C-y>"] = LazyVim.cmp.confirm({ select = true }),
@@ -68,13 +73,14 @@ return {
           end,
         }),
         sources = cmp.config.sources({
+          { name = "lazydev" },
           { name = "nvim_lsp" },
           { name = "path" },
         }, {
           { name = "buffer" },
         }),
         formatting = {
-          format = function(_, item)
+          format = function(entry, item)
             local icons = LazyVim.config.icons.kinds
             if icons[item.kind] then
               item.kind = icons[item.kind] .. item.kind
@@ -95,9 +101,10 @@ return {
           end,
         },
         experimental = {
-          ghost_text = {
+          -- only show ghost text when we show ai completions
+          ghost_text = vim.g.ai_cmp and {
             hl_group = "CmpGhostText",
-          },
+          } or false,
         },
         sorting = defaults.sorting,
       }
@@ -105,7 +112,7 @@ return {
     main = "lazyvim.util.cmp",
   },
 
-  -- Snippets
+  -- snippets
   {
     "hrsh7th/nvim-cmp",
     dependencies = {

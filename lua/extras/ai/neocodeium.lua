@@ -1,10 +1,11 @@
 -- https://github.com/monkoose/neocodeium
 -- AI completion powered by Codeium.
+
 return {
   {
     "monkoose/neocodeium",
-    event = "LazyFile",
     version = false,
+    event = "LazyFile",
     opts = {
       silent = true,
       filetypes = {

@@ -1,5 +1,6 @@
 -- https://github.com/echasnovski/mini.icons
 -- Icon provider.
+
 return {
   "echasnovski/mini.icons",
   event = "VeryLazy",
@@ -14,7 +15,8 @@ return {
     },
   },
   config = function(_, opts)
-    require("mini.icons").setup(opts)
+    local MiniIcons = require("mini.icons")
+    MiniIcons.setup(opts)
     MiniIcons.mock_nvim_web_devicons()
   end,
 }

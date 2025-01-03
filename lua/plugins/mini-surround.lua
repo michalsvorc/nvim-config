@@ -1,9 +1,9 @@
 -- https://github.com/echasnovski/mini.surround
 -- Neovim Lua plugin with fast and feature-rich surround actions.
+
 return {
   "echasnovski/mini.surround",
   event = "LazyFile",
-  version = false,
   opts = {
     -- prefixed with "g" to avoid conflicts with folke/flash.nvim
     mappings = {

@@ -2,6 +2,7 @@
 Copyright (c) 2024 Oli Morris
 
 Source: https://github.com/olimorris/codecompanion.nvim/blob/v10.7.0/lua/codecompanion/config.lua#L506
+
 Changed:
   - description
   - short_name

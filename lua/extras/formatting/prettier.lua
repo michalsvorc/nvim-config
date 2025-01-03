@@ -13,19 +13,17 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/formatting/prettier.lua
-Removed:
-  - none-ls support
+Source: https://github.com/LazyVim/LazyVim/blob/v14.6.0/lua/lazyvim/plugins/extras/formatting/prettier.lua
+
 Changed:
   - "stevearc/conform.nvim" remove optional flag
+Removed:
+  - lazyvim_docs conditional to set lazyvim_prettier_needs_config
+  - none-ls support
 --]]
+
 -- https://github.com/prettier/prettier
----@diagnostic disable: inject-field
-if lazyvim_docs then
-  -- Enable the option to require a Prettier config file
-  -- If no prettier config file is found, the formatter will not be used
-  vim.g.lazyvim_prettier_needs_config = false
-end
+-- Opinionated code formatter.
 
 ---@alias ConformCtx {buf: number, filename: string, dirname: string}
 local M = {}
@@ -85,12 +83,12 @@ return {
   },
   {
     "stevearc/conform.nvim",
-    ---@diagnostic disable-next-line: undefined-doc-name
     ---@param opts ConformOpts
     opts = function(_, opts)
       opts.formatters_by_ft = opts.formatters_by_ft or {}
       for _, ft in ipairs(supported) do
-        opts.formatters_by_ft[ft] = { "prettier" }
+        opts.formatters_by_ft[ft] = opts.formatters_by_ft[ft] or {}
+        table.insert(opts.formatters_by_ft[ft], "prettier")
       end
 
       opts.formatters = opts.formatters or {}

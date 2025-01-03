@@ -1,11 +1,12 @@
 -- https://github.com/zbirenbaum/copilot.lua
 -- Fully featured & enhanced replacement for copilot.vim
 -- complete with API for interacting with Github Copilot.
+
 return {
   {
     "zbirenbaum/copilot.lua",
-    event = "LazyFile",
     version = false,
+    event = "LazyFile",
     keys = {
       { "<LocalLeader>s", "<cmd>Copilot panel<cr>", mode = { "n", "v" }, desc = "Suggestions panel" },
       { "<LocalLeader>S", "<cmd>set buflisted | Copilot toggle<cr>", mode = { "n", "v" }, desc = "Suggestions toggle" },

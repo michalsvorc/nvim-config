@@ -13,33 +13,26 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/treesitter.lua
+Source: https://github.com/LazyVim/LazyVim/blob/v14.6.0/lua/lazyvim/plugins/treesitter.lua
+
 Changed:
-  - split to a separate module
-  - remove `ensure_installed` table deduplication in `config` function
-  - remove `which-key` setup
+  - extract ensure_installed table
 --]]
 
--- Repository: https://github.com/nvim-treesitter/nvim-treesitter
--- Description: Nvim Treesitter configurations and abstraction layer.
--- Supported languages: https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages
-local ensure_installed = {
-  "bash",
-  "diff",
-  "json",
-  "jsonc",
-  "lua",
-  "luadoc",
-  "luap",
-  "markdown",
-  "markdown_inline",
-  "query",
-  "regex",
-  "toml",
-  "yaml",
-}
+local ensure_installed = require("plugins.treesitter.ensure_installed")
 
 return {
+  {
+    "folke/which-key.nvim",
+    opts = {
+      spec = {
+        { "<BS>", desc = "Decrement Selection", mode = "x" },
+        { "<c-space>", desc = "Increment Selection", mode = { "x", "n" } },
+      },
+    },
+  },
+
+  -- https://github.com/nvim-treesitter/nvim-treesitter
   -- Treesitter is a new parser generator tool that we can
   -- use in Neovim to power faster and more accurate
   -- syntax highlighting.
@@ -91,7 +84,54 @@ return {
     },
     ---@param opts TSConfig
     config = function(_, opts)
+      if type(opts.ensure_installed) == "table" then
+        opts.ensure_installed = LazyVim.dedup(opts.ensure_installed)
+      end
       require("nvim-treesitter.configs").setup(opts)
     end,
+  },
+
+  -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+  -- Syntax aware text-objects, select, move, swap, and peek support.
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    event = "VeryLazy",
+    enabled = true,
+    config = function()
+      -- If treesitter is already loaded, we need to run config again for textobjects
+      if LazyVim.is_loaded("nvim-treesitter") then
+        local opts = LazyVim.opts("nvim-treesitter")
+        require("nvim-treesitter.configs").setup({ textobjects = opts.textobjects })
+      end
+
+      -- When in diff mode, we want to use the default
+      -- vim text objects c & C instead of the treesitter ones.
+      local move = require("nvim-treesitter.textobjects.move") ---@type table<string,fun(...)>
+      local configs = require("nvim-treesitter.configs")
+      for name, fn in pairs(move) do
+        if name:find("goto") == 1 then
+          move[name] = function(q, ...)
+            if vim.wo.diff then
+              local config = configs.get_module("textobjects.move")[name] ---@type table<string,string>
+              for key, query in pairs(config or {}) do
+                if q == query and key:find("[%]%[][cC]") then
+                  vim.cmd("normal! " .. key)
+                  return
+                end
+              end
+            end
+            return fn(q, ...)
+          end
+        end
+      end
+    end,
+  },
+
+  -- https://github.com/windwp/nvim-ts-autotag
+  -- Automatically add closing tags for HTML and JSX.
+  {
+    "windwp/nvim-ts-autotag",
+    event = "LazyFile",
+    opts = {},
   },
 }

@@ -13,21 +13,25 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/lang/python.lua
-Removed:
-  - global options for setting lsp and ruff
-  - recommend function
-  - neovim/nvim-lspconfig enable servers loop
-  - ruff_lsp options
-  - plugins:
-    * linux-cultist/venv-selector.nvim
-    * nvim-neotest/neotest
-    * mfussenegger/nvim-dap
-    * jay-babu/mason-nvim-dap.nvim
+Source: https://github.com/LazyVim/LazyVim/blob/v14.6.0/lua/lazyvim/plugins/extras/lang/python.lua
+
 Added:
   - ensure_installed for python in nvim-treesitter
   - ensure_installed for lsp and ruff in mason
+Removed:
+  - lazyvim_docs check for global lsp and ruff values
+  - recommended function
+  - neovim/nvim-lspconfig
+  - ruff_lsp settings (old LSP implementation)
+  - hrsh7th/nvim-cmp optional flag
+  - plugins:
+    * neovim/nvim-lspconfig (enable servers loop)
+    * nvim-neotest/neotest
+    * mfussenegger/nvim-dap
+    * linux-cultist/venv-selector.nvim
+    * jay-babu/mason-nvim-dap.nvim
 --]]
+
 local lsp = "pyright"
 local ruff = "ruff"
 
@@ -64,7 +68,6 @@ return {
         [ruff] = function()
           LazyVim.lsp.on_attach(function(client, _)
             -- Disable hover in favor of Pyright
-            ---@diagnostic disable-next-line: undefined-field
             client.server_capabilities.hoverProvider = false
           end, ruff)
         end,

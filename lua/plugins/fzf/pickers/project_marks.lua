@@ -3,8 +3,7 @@ MIT License
 Copyright (c) 2021 iBhagwan
 https://github.com/ibhagwan/fzf-lua/blob/main/LICENSE
 
-Source:
-https://github.com/ibhagwan/fzf-lua/blob/e2f7165788ab36431680867d087d093470cc236e/lua/fzf-lua/providers/nvim.lua#L222
+Source: https://github.com/ibhagwan/fzf-lua/blob/e2f7165788ab36431680867d087d093470cc236e/lua/fzf-lua/providers/nvim.lua#L222
 
 Changed:
   - filters by pattern

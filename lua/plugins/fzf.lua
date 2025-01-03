@@ -13,32 +13,25 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/editor/fzf.lua
+Source: https://github.com/LazyVim/LazyVim/blob/v14.6.0/lua/lazyvim/plugins/extras/editor/fzf.lua
 
-Removed:
-  - setting vim.g.lazyvim_picker
-  - folke/todo-comments.nvim plugin
-  - folke/trouble.nvim
-  - custom LazyVim option to configure vim.ui.select
-    fixes picker display for some plugins (CodeCompanion) in visual mode
-  - code actions previewer
+Added:
+  - custom pickers
+  - allow ripgrep flags in live grep
+  - set default layout
 Changed:
   - extracted keymaps to separate file
-  - stylua formatting
   - path to LSP keymaps from lazyvim/plugins to plugins
   - window dimensions
-  - use live_grep_glob for grep commands
-  - fzf layout
-  - disabled init function to configure vim.ui.select
-Added:
-  - buffer picker
-  - loading of custom pickers
-  - register FzfLua to handle vim.ui.select
+Removed:
+  - setting vim.g.lazyvim_picker
+  - folke/trouble.nvim
+  - folke/todo-comments.nvim
 --]]
-local lsp_keymaps_path = "plugins.lsp.keymaps"
 
 -- https://github.com/ibhagwan/fzf-lua
 -- Improved fzf.vim written in lua.
+
 ---@class FzfLuaOpts: lazyvim.util.pick.Opts
 ---@field cmd string?
 
@@ -62,9 +55,6 @@ local picker = {
 if not LazyVim.pick.register(picker) then
   return {}
 end
-
-local keymaps = require("plugins.fzf.keymaps")
-local winopts = require("plugins.fzf.winopts")
 
 return {
   desc = "Awesome picker for FZF (alternative to Telescope)",
@@ -97,18 +87,6 @@ return {
       config.defaults.actions.files["alt-c"] = config.defaults.actions.files["ctrl-r"]
       config.set_action_helpstr(config.defaults.actions.files["ctrl-r"], "toggle-root-dir")
 
-      -- use the same prompt for all
-      local defaults = require("fzf-lua.profiles.default-title")
-      local function fix(t)
-        t.prompt = t.prompt ~= nil and " " or nil
-        for _, v in pairs(t) do
-          if type(v) == "table" then
-            fix(v)
-          end
-        end
-      end
-      fix(defaults)
-
       local img_previewer ---@type string[]?
       for _, v in ipairs({
         { cmd = "ueberzug", args = {} },
@@ -121,7 +99,8 @@ return {
         end
       end
 
-      return vim.tbl_deep_extend("force", defaults, {
+      return {
+        "default-title",
         fzf_colors = true,
         fzf_opts = {
           ["--layout"] = "default",
@@ -143,6 +122,37 @@ return {
             ueberzug_scaler = "fit_contain",
           },
         },
+        -- Custom LazyVim option to configure vim.ui.select
+        ui_select = function(fzf_opts, items)
+          return vim.tbl_deep_extend("force", fzf_opts, {
+            prompt = " ",
+            winopts = {
+              title = " " .. vim.trim((fzf_opts.prompt or "Select"):gsub("%s*:%s*$", "")) .. " ",
+              title_pos = "center",
+            },
+          }, fzf_opts.kind == "codeaction" and {
+            winopts = {
+              layout = "vertical",
+              -- height is number of items minus 15 lines for the preview, with a max of 80% screen height
+              height = math.floor(math.min(vim.o.lines * 0.8 - 16, #items + 2) + 0.5) + 16,
+              width = 0.5,
+              preview = not vim.tbl_isempty(LazyVim.lsp.get_clients({ bufnr = 0, name = "vtsls" })) and {
+                layout = "vertical",
+                vertical = "down:15,border-top",
+                hidden = "hidden",
+              } or {
+                layout = "vertical",
+                vertical = "down:15,border-top",
+              },
+            },
+          } or {
+            winopts = {
+              width = 0.5,
+              -- height is number of items, with a max of 80% screen height
+              height = math.floor(math.min(vim.o.lines * 0.8, #items + 2) + 0.5),
+            },
+          })
+        end,
         winopts = {
           width = 1,
           height = 1,
@@ -183,26 +193,50 @@ return {
             child_prefix = false,
           },
           code_actions = {
-            winopts = winopts.small_window,
+            previewer = vim.fn.executable("delta") == 1 and "codeaction_native" or nil,
           },
         },
-      })
+      }
     end,
     config = function(_, opts)
+      if opts[1] == "default-title" then
+        -- use the same prompt for all pickers for profile `default-title` and
+        -- profiles that use `default-title` as base profile
+        local function fix(t)
+          t.prompt = t.prompt ~= nil and " " or nil
+          for _, v in pairs(t) do
+            if type(v) == "table" then
+              fix(v)
+            end
+          end
+          return t
+        end
+        opts = vim.tbl_deep_extend("force", fix(require("fzf-lua.profiles.default-title")), opts)
+        opts[1] = nil
+      end
       require("fzf-lua").setup(opts)
     end,
-    keys = keymaps.base,
     init = function()
       require("plugins.fzf.pickers")
+
       -- register FzfLua to handle vim.ui.select
-      vim.cmd("FzfLua register_ui_select")
+      LazyVim.on_very_lazy(function()
+        vim.ui.select = function(...)
+          require("lazy").load({ plugins = { "fzf-lua" } })
+          local opts = LazyVim.opts("fzf-lua") or {}
+          require("fzf-lua").register_ui_select(opts.ui_select or nil)
+          return vim.ui.select(...)
+        end
+      end)
     end,
+    keys = require("plugins.fzf.keymaps").base,
   },
   {
     "neovim/nvim-lspconfig",
     opts = function()
-      local Keys = require(lsp_keymaps_path).get()
-      vim.list_extend(Keys, keymaps.lsp)
+      local Keys = require("plugins.lsp.keymaps").get()
+      local keymaps = require("plugins.fzf.keymaps").lsp
+      vim.list_extend(Keys, keymaps)
     end,
   },
 }

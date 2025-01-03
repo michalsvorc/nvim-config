@@ -15,7 +15,6 @@ vim.cmd([[cab cc CodeCompanion]])
 return {
   "olimorris/codecompanion.nvim",
   event = "VeryLazy",
-  version = "*",
   dependencies = {
     { "nvim-lua/plenary.nvim", branch = "master" }, -- https://github.com/olimorris/codecompanion.nvim/tree/v10.7.0?tab=readme-ov-file#package-installation see Pinned plugins
     "nvim-treesitter/nvim-treesitter",
@@ -76,59 +75,17 @@ return {
     },
     prompt_library = prompts,
   },
+  -- stylua: ignore
   keys = {
     { "<LocalLeader>\\", "<cmd>CodeCompanionChat<cr>", mode = { "n", "v" }, desc = "Chat" },
     { "<LocalLeader>v", "<cmd>vsplit | CodeCompanionChat Toggle<cr>", mode = { "n", "v" }, desc = "Chat (vsplit)" },
     { "<LocalLeader>a", "<cmd>CodeCompanionActions<cr>", mode = { "n", "v" }, desc = "Actions" },
     { "<LocalLeader>A", "<cmd>CodeCompanionChat Add<cr>", mode = "v", desc = "Add to Chat" },
-    {
-      "<LocalLeader>c",
-      function()
-        require("codecompanion").prompt("commit")
-      end,
-      mode = "v",
-      desc = "Commit message",
-    },
-    {
-      "<LocalLeader>d",
-      function()
-        require("codecompanion").prompt("lsp")
-      end,
-      mode = "v",
-      desc = "Diagnostics",
-    },
-    {
-      "<LocalLeader>e",
-      function()
-        require("codecompanion").prompt("explain")
-      end,
-      mode = "v",
-      desc = "Explain",
-    },
-    {
-      "<LocalLeader>f",
-      function()
-        require("codecompanion").prompt("fix")
-      end,
-      mode = "v",
-      desc = "Fix",
-    },
-    {
-      "<LocalLeader>r",
-      function()
-        require("codecompanion").prompt("refactor")
-      end,
-      mode = "v",
-      desc = "Refactor",
-    },
-    {
-      "<LocalLeader>t",
-      function()
-        require("codecompanion").prompt("tests")
-      end,
-      mode = "v",
-      desc = "Unit tests",
-    },
+    { "<LocalLeader>c", function() require("codecompanion").prompt("commit") end, mode = "v", desc = "Commit message" },
+    { "<LocalLeader>d", function() require("codecompanion").prompt("lsp") end, mode = "v", desc = "Diagnostics" },
+    { "<LocalLeader>e", function() require("codecompanion").prompt("explain") end, mode = "v", desc = "Explain" },
+    { "<LocalLeader>f", function() require("codecompanion").prompt("fix") end, mode = "v", desc = "Fix" },
+    { "<LocalLeader>r", function() require("codecompanion").prompt("refactor") end, mode = "v", desc = "Refactor" },
+    { "<LocalLeader>t", function() require("codecompanion").prompt("tests") end, mode = "v", desc = "Unit tests" },
   },
-  config = true,
 }

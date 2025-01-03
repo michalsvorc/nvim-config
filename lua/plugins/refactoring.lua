@@ -13,17 +13,19 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/editor/refactoring.lua
+Source: https://github.com/LazyVim/LazyVim/blob/v14.6.0/lua/lazyvim/plugins/extras/editor/refactoring.lua
+
 Changed:
   - visual mode refactoring key binding
+  - keymaps
 Removed:
-  - picker selection
-Added:
-  - visual mode refactoring small window fzf picker
+  - refactor group keymap
+  - telescope conditionals
 --]]
 
 -- https://github.com/ThePrimeagen/refactoring.nvim
 -- The Refactoring library based off the Refactoring book by Martin Fowler.
+
 local pick = function()
   local fzf_lua = require("fzf-lua")
   local results = require("refactoring").get_refactors()
@@ -37,7 +39,6 @@ local pick = function()
         refactoring.refactor(selected[1])
       end,
     },
-    winopts = require("config.fzf").winopts.small_window,
   }
   fzf_lua.fzf_exec(results, opts)
 end

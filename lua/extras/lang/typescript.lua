@@ -13,34 +13,65 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/lang/typescript.lua
-Removed:
-  - recommend function
+Source: https://github.com/LazyVim/LazyVim/blob/v14.6.0/lua/lazyvim/plugins/extras/lang/typescript.lua
+
+Added:
   - plugins:
-    * mfussenegger/nvim-dap
+    * formatting
+    * linting
+    * type-checking
+  - ensure installed:
+    * tressitter syntax
+    * language server
 Changed:
   - prettier icon
-Added:
-  - formatting: prettier
-  - linting: eslint
-  - type-checking: dmmulroy/tsc.nvim
+Removed:
+  - recommended function
+  - plugins:
+    * mfussenegger/nvim-dap
 --]]
----@diagnostic disable: unused-local, undefined-doc-name, undefined-field
+
 return {
+  -- formatting
+  { import = "extras.formatting.prettier" },
+
+  -- linting
+  { import = "extras.linting.eslint" },
+
+  -- syntax
   {
     "nvim-treesitter/nvim-treesitter",
     opts = { ensure_installed = { "typescript" } },
   },
+
+  -- language server
   {
     "williamboman/mason.nvim",
     opts = { ensure_installed = { "vtsls" } },
   },
+
+  -- type-checking
+  -- https://github.com/dmmulroy/tsc.nvim
+  {
+    "dmmulroy/tsc.nvim",
+    event = "LazyFile",
+    config = function()
+      require("tsc").setup()
+    end,
+  },
+
+  -- correctly setup lspconfig
   {
     "neovim/nvim-lspconfig",
     opts = {
       -- make sure mason installs the server
       servers = {
+        --- @deprecated -- tsserver renamed to ts_ls but not yet released, so keep this for now
+        --- the proper approach is to check the nvim-lspconfig release version when it's released to determine the server name dynamically
         tsserver = {
+          enabled = false,
+        },
+        ts_ls = {
           enabled = false,
         },
         vtsls = {
@@ -60,6 +91,7 @@ return {
               enableMoveToFileCodeAction = true,
               autoUseWorkspaceTsdk = true,
               experimental = {
+                maxInlayHintLength = 30,
                 completion = {
                   enableServerSideFuzzyMatch = true,
                 },
@@ -135,7 +167,13 @@ return {
         },
       },
       setup = {
+        --- @deprecated -- tsserver renamed to ts_ls but not yet released, so keep this for now
+        --- the proper approach is to check the nvim-lspconfig release version when it's released to determine the server name dynamically
         tsserver = function()
+          -- disable tsserver
+          return true
+        end,
+        ts_ls = function()
           -- disable tsserver
           return true
         end,
@@ -197,18 +235,7 @@ return {
       },
     },
   },
-  -- formatting
-  { import = "extras.formatting.prettier" },
-  -- linting
-  { import = "extras.linting.eslint" },
-  -- type-checking
-  {
-    "dmmulroy/tsc.nvim",
-    event = "LazyFile",
-    config = function()
-      require("tsc").setup()
-    end,
-  },
+
   -- Filetype icons
   {
     "echasnovski/mini.icons",

@@ -13,13 +13,15 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/coding.lua
+Source: https://github.com/LazyVim/LazyVim/blob/v14.6.0/lua/lazyvim/plugins/coding.lua#L16
+
 Changed:
   - split to a separate module
 --]]
 
 -- https://github.com/echasnovski/mini.pairs
 -- Minimal and fast autopairs.
+
 return {
   "echasnovski/mini.pairs",
   event = "VeryLazy",

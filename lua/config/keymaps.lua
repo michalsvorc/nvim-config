@@ -13,8 +13,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
-Diff with source for list of changes.
+Source: https://github.com/LazyVim/LazyVim/blob/v14.6.0/lua/lazyvim/config/keymaps.lua
+
+Changed: Diff with source for list of changes.
 --]]
 
 -- This file is automatically loaded by lazyvim.config.init

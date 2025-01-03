@@ -13,34 +13,45 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Source: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/linting/eslint.lua
+Source: https://github.com/LazyVim/LazyVim/blob/v14.6.0/lua/lazyvim/plugins/extras/linting/eslint.lua
+
 Removed:
-  - Use EslintFixAll on Neovim < 0.10.0
+  - use EslintFixAll on Neovim < 0.10.0
 --]]
+
 -- https://github.com/eslint/eslint
+-- Find and fix problems in your JavaScript code.
+
+local auto_format = vim.g.lazyvim_eslint_auto_format == nil or vim.g.lazyvim_eslint_auto_format
+
 return {
   {
     "neovim/nvim-lspconfig",
     -- other settings removed for brevity
     opts = {
-      ---@diagnostic disable-next-line: undefined-doc-name
       ---@type lspconfig.options
       servers = {
         eslint = {
           settings = {
             -- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
             workingDirectories = { mode = "auto" },
+            format = auto_format,
           },
         },
       },
       setup = {
         eslint = function()
+          if not auto_format then
+            return
+          end
+
           local formatter = LazyVim.lsp.formatter({
             name = "eslint: lsp",
             primary = false,
             priority = 200,
             filter = "eslint",
           })
+
           -- register the formatter with LazyVim
           LazyVim.format.register(formatter)
         end,

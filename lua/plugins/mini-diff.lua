@@ -1,5 +1,6 @@
 -- https://github.com/echasnovski/mini.diff
 -- Work with diff hunks.
+
 return {
   "echasnovski/mini.diff",
   event = "VeryLazy",

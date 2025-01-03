@@ -1,5 +1,6 @@
 -- https://github.com/stevearc/oil.nvim
 -- A vim-vinegar like file explorer that lets you edit your filesystem like a normal Neovim buffer.
+
 local column_details_toggle = true
 local column_details_minimal = { "icon" }
 local column_details_full = { "icon", "permissions", "size", "mtime" }
@@ -30,7 +31,7 @@ end
 
 return {
   "stevearc/oil.nvim",
-  event = "VeryLazy", -- required for default_file_explorer to work
+  event = "VeryLazy",
   config = function()
     require("oil").setup({
       default_file_explorer = true,
@@ -50,10 +51,6 @@ return {
     })
   end,
   keys = {
-    {
-      "<leader>e",
-      toggle_explorer,
-      desc = "File Explorer",
-    },
+    { "<leader>e", toggle_explorer, desc = "File Explorer" },
   },
 }

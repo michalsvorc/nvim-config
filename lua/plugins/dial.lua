@@ -9,8 +9,9 @@ end
 
 return {
   "monaqa/dial.nvim",
-  event = "LazyFile",
   version = false,
+  event = "LazyFile",
+  -- stylua: ignore
   keys = {
     { "<C-a>", mode = "n", manipulate("increment", "normal"), desc = "Increment in normal mode" },
     { "<C-x>", mode = "n", manipulate("decrement", "normal"), desc = "Decrement in normal mode" },
