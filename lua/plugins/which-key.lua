@@ -18,6 +18,7 @@ Source: https://github.com/LazyVim/LazyVim/blob/v14.6.0/lua/lazyvim/plugins/edit
 Changed:
   - split to a separate module
   - preset
+  - disable icons
   - keymaps
 --]]
 
@@ -31,22 +32,22 @@ return {
     opts_extend = { "spec" },
     opts = {
       preset = "classic",
+      icons = { mappings = false },
       defaults = {},
       spec = {
         {
           mode = { "n", "v" },
           { "<leader><tab>", group = "tabs" },
-          { "<leader>a", group = "ai", icon = { icon = "󰚩 ", color = "orange" } },
           { "<leader>c", group = "code" },
           { "<leader>f", group = "file/find" },
-          { "<leader>g", group = "git", icon = { icon = "󰊢 ", color = "orange" } },
+          { "<leader>g", group = "git" },
           { "<leader>gs", group = "stash" },
-          { "<leader>h", group = "hunks", icon = { icon = "󰊢 ", color = "orange" } },
+          { "<leader>h", group = "hunks" },
           { "<leader>q", group = "quickfix" },
-          { "<leader>r", group = "refactor", icon = { icon = " ", color = "orange" } },
+          { "<leader>r", group = "refactor" },
           { "<leader>s", group = "search" },
-          { "<leader>t", group = "terminal", icon = { icon = "", color = "red" } },
-          { "<leader>u", group = "ui", icon = { icon = "󰙵 ", color = "cyan" } },
+          { "<leader>t", group = "terminal" },
+          { "<leader>u", group = "ui" },
           { "<leader>y", group = "yank" },
           { "[", group = "prev" },
           { "]", group = "next" },
