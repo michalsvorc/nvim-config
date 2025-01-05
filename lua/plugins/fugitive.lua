@@ -29,8 +29,9 @@ return {
     { "<leader>gp", function() vim.cmd("Git pull") end, desc = "Pull" },
     { "<leader>gP", function() vim.cmd("Git push") end, desc = "Push" },
     { "<leader>gR", function() vim.cmd("Gread") end, desc = "Read" },
-    { "<leader>gss", function() vim.cmd("Git stash") end, desc = "Stash" },
-    { "<leader>gsm", ':call feedkeys(":Git stash -m ", "n")<CR>', desc = "Stash with Message" },
+    { "<leader>gss", function() vim.cmd("Git stash") end, desc = "Stash All" },
+    { "<leader>gsm", ':call feedkeys(":Git stash -m ", "n")<CR>', desc = "Stash All (+message)" },
+    { "<leader>gsb", function() vim.cmd("Git stash -- %") end, desc = "Stash Buffer" },
     { "<leader>gw", function() vim.cmd("Gwrite") end, desc = "Write" },
     -- quick keys
     { "<leader>1", toggleFugitive, desc = "Git Client" },
