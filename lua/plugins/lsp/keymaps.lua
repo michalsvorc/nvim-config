@@ -14,6 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 Source: https://github.com/LazyVim/LazyVim/blob/v14.6.0/lua/lazyvim/plugins/lsp/keymaps.lua
+
+Changed:
+  - remap <C-k> to <M-g> to avoid collision when cycling trough items in plugins
 --]]
 
 local M = {}
@@ -39,7 +42,7 @@ function M.get()
       { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
       { "K", function() return vim.lsp.buf.hover() end, desc = "Hover" },
       { "gK", function() return vim.lsp.buf.signature_help() end, desc = "Signature Help", has = "signatureHelp" },
-      { "<c-k>", function() return vim.lsp.buf.signature_help() end, mode = "i", desc = "Signature Help", has = "signatureHelp" },
+      { "<M-g>", function() return vim.lsp.buf.signature_help() end, mode = "i", desc = "Signature Help", has = "signatureHelp" },
       { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" },
       { "<leader>cc", vim.lsp.codelens.run, desc = "Run Codelens", mode = { "n", "v" }, has = "codeLens" },
       { "<leader>cC", vim.lsp.codelens.refresh, desc = "Refresh & Display Codelens", mode = { "n" }, has = "codeLens" },
