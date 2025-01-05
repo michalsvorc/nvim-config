@@ -1,6 +1,8 @@
 -- https://github.com/monkoose/neocodeium
 -- AI completion powered by Codeium.
 
+local cmp = require("modules.cmp")
+
 return {
   {
     "monkoose/neocodeium",
@@ -8,6 +10,7 @@ return {
     event = "LazyFile",
     opts = {
       silent = true,
+      manual = true,
       filetypes = {
         gitcommit = true,
         gitrebase = false,
@@ -15,21 +18,39 @@ return {
         ["."] = false,
       },
     },
+
+
     -- stylua: ignore
     keys = {
       { "<C-i>", function() require("neocodeium").accept() end, mode = "i" },
       { "<C-l>", function() require("neocodeium").accept_line() end, mode = "i" },
       { "<C-h>", function() require("neocodeium").accept_word() end, mode = "i" },
-      { "<C-j>", function() require("neocodeium").cycle_or_complete() end, mode = "i" },
-      { "<C-k>", function() require("neocodeium").cycle_or_complete(-1) end, mode = "i" },
+      { "<C-j>",
+        function()
+          require("neocodeium").cycle_or_complete(1)
+          cmp.menu_hide()
+        end,
+        mode = "i"
+      },
+      {
+        "<C-k>",
+        function()
+          require("neocodeium").cycle_or_complete(-1)
+          cmp.menu_hide()
+        end,
+        mode = "i",
+      },
       { "<C-c>", function() require("neocodeium").clear() end, mode = "i" },
     },
-        end,
-      },
-    },
     config = function(_, opts)
-      local neocodeium = require("neocodeium")
+      require("neocodeium").setup(opts)
 
+      vim.api.nvim_create_autocmd("User", {
+        pattern = cmp.events.menu_open,
+        callback = function()
+          require("neocodeium").clear()
+        end,
+      })
     end,
   },
 }
