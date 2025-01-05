@@ -23,6 +23,7 @@ return {
     { "<leader>gB", function() vim.cmd("Git blame") end, desc = "Blame" },
     { "<leader>gc", function() vim.cmd("vert Git commit") end, desc = "Commit" },
     { "<leader>gd", function() vim.cmd("Gvdiffsplit") end, desc = "Diff" },
+    { "<leader>ge", function() vim.cmd("Gedit") end, desc = "GEdit" },
     { "<leader>gg", toggleFugitive, desc = "Git Client" },
     { "<leader>gl", function() vim.cmd("vert Git log") end, desc = "Log" },
     { "<leader>gp", function() vim.cmd("Git pull") end, desc = "Pull" },
