@@ -25,7 +25,7 @@ Changed:
   - enable the default ruler
   - disable all snacks animations
   - set LazyVim picker to "fzf"
-  - set LazyVim completion engine to "nvim-cmp"
+  - set LazyVim completion engine to "blink.cmp"
 --]]
 
 -- This file is automatically loaded by plugins.core before lazy.nvim startup.
@@ -57,15 +57,11 @@ vim.g.snacks_animate = false
 
 -- LazyVim picker to use.
 -- Can be one of: telescope, fzf
--- Leave it to "auto" to automatically use the picker
--- enabled with `:LazyExtras`
 vim.g.lazyvim_picker = "fzf"
 
 -- LazyVim completion engine to use.
 -- Can be one of: nvim-cmp, blink.cmp
--- Leave it to "auto" to automatically use the completion engine
--- enabled with `:LazyExtras`
-vim.g.lazyvim_cmp = "nvim-cmp"
+vim.g.lazyvim_cmp = "blink.cmp"
 
 -- if the completion engine supports the AI source,
 -- use that instead of inline suggestions

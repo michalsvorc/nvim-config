@@ -23,12 +23,12 @@ Removed:
   - recommended function
   - neovim/nvim-lspconfig
   - ruff_lsp settings (old LSP implementation)
-  - hrsh7th/nvim-cmp optional flag
   - plugins:
     * neovim/nvim-lspconfig (enable servers loop)
     * nvim-neotest/neotest
     * mfussenegger/nvim-dap
     * linux-cultist/venv-selector.nvim
+    * hrsh7th/nvim-cmp
     * jay-babu/mason-nvim-dap.nvim
 --]]
 
@@ -73,13 +73,5 @@ return {
         end,
       },
     },
-  },
-
-  {
-    "hrsh7th/nvim-cmp",
-    opts = function(_, opts)
-      opts.auto_brackets = opts.auto_brackets or {}
-      table.insert(opts.auto_brackets, "python")
-    end,
   },
 }

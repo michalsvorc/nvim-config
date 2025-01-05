@@ -25,7 +25,7 @@ Facilitates adding local plugin specifications. Any plugin specifications placed
 
 ## Custom snippets
 
-Custom snippets are placed in `./snippets` directory.
+Read [blink.cmp](https://cmp.saghen.dev/configuration/snippets.html#custom-snippets) guide.
 
 - [vscode snippet spec](https://code.visualstudio.com/docs/editor/userdefinedsnippets)
 - [friendly-snippets examples](https://github.com/rafamadriz/friendly-snippets/tree/main/snippets)

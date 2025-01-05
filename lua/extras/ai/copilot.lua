@@ -48,19 +48,6 @@ return {
       vim.api.nvim_set_hl(0, "CopilotSuggestion", { link = "Function" })
       vim.api.nvim_set_hl(0, "CopilotAnnotation", { link = "Function" })
 
-      -- cmp menu override
-      -- https://github.com/zbirenbaum/copilot.lua?tab=readme-ov-file#suggestion
-      local cmp = require("cmp")
-
-      ---@diagnostic disable-next-line: undefined-field
-      cmp.event:on("menu_opened", function()
-        vim.b.copilot_suggestion_hidden = true
-      end)
-
-      ---@diagnostic disable-next-line: undefined-field
-      cmp.event:on("menu_closed", function()
-        vim.b.copilot_suggestion_hidden = false
-      end)
     end,
   },
 }

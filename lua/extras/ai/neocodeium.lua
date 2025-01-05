@@ -24,37 +24,12 @@ return {
       { "<C-k>", function() require("neocodeium").cycle_or_complete(-1) end, mode = "i" },
       { "<C-c>", function() require("neocodeium").clear() end, mode = "i" },
     },
-    config = function(_, opts)
-      -- Using neocodeium alongside nvim-cmp
-      -- Source: https://github.com/monkoose/neocodeium
-      local cmp = require("cmp")
-
-      ---@diagnostic disable-next-line: undefined-field
-      require("neocodeium").setup(LazyVim.merge(opts, {
-        filter = function()
-          return not cmp.visible()
         end,
-      }))
-    end,
-  },
-  {
-    "hrsh7th/nvim-cmp",
-    optional = true,
-    opts = {
-      completion = {
-        autocomplete = false,
       },
     },
     config = function(_, opts)
-      local cmp = require("cmp")
       local neocodeium = require("neocodeium")
 
-      ---@diagnostic disable-next-line: undefined-field
-      cmp.event:on("menu_opened", function()
-        neocodeium.clear()
-      end)
-
-      cmp.setup(opts)
     end,
   },
 }
