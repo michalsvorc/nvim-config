@@ -4,7 +4,8 @@ return {
   ai_neocodeium = "ai/neocodeium.lua",
   ai_copilot = "ai/copilot.lua",
   -- lang
-  lang_python = "lang/python.lua",
+  lang_gdscript = "lang/gdscript.lua",
+  lang_python = "lang/pyhthon.lua",
   lang_typescript = "lang/typescript.lua",
   lang_vue = "lang/vue.lua",
 }
