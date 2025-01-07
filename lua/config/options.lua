@@ -38,6 +38,7 @@ vim.g.maplocalleader = "\\"
 vim.opt.listchars = {
   trail = "·",
   nbsp = "␣",
+  tab = ">-",
 }
 
 -- Vim navigation for fzf results.
