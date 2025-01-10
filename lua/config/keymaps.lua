@@ -117,8 +117,8 @@ map("n", "<leader>qe", "<cmd>Quickfix edit_all_entries<cr>", { desc = "Edit All 
 map("n", "<leader>qq", "<cmd>Quickfix toggle_window<cr>", { desc = "Toggle Window" })
 map("n", "<leader>qs", "<cmd>FzfLua quickfix<cr>", { desc = "Search List" })
 map("n", "<leader>qS", "<cmd>FzfLua quickfix_stack<cr>", { desc = "Search Stack" })
-map("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
-map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
+map("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix Item" })
+map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix Item" })
 map("n", "[Q", vim.cmd.colder, { desc = "Previous Quickfix List" })
 map("n", "]Q", vim.cmd.cnewer, { desc = "Next Quickfix List" })
 
