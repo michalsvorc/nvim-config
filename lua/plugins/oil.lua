@@ -1,6 +1,18 @@
 -- https://github.com/stevearc/oil.nvim
 -- A vim-vinegar like file explorer that lets you edit your filesystem like a normal Neovim buffer.
 
+-- Show CWD in the winbar
+-- https://github.com/stevearc/oil.nvim/blob/master/doc/recipes.md#show-cwd-in-the-winbar
+function _G.get_oil_winbar()
+  local bufnr = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
+  local dir = require("oil").get_current_dir(bufnr)
+  if dir then
+    return vim.fn.fnamemodify(dir, ":~")
+  else
+    return vim.api.nvim_buf_get_name(0)
+  end
+end
+
 local column_details_toggle = true
 local column_details_minimal = { "icon" }
 local column_details_full = { "icon", "permissions", "size", "mtime" }
@@ -40,6 +52,9 @@ return {
       skip_confirm_for_simple_edits = true,
       view_options = {
         show_hidden = true,
+      },
+      win_options = {
+        winbar = "%!v:lua.get_oil_winbar()",
       },
       keymaps = {
         ["gs"] = toggle_detailed_view,
