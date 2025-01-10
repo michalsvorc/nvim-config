@@ -1,6 +1,5 @@
 -- https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages
 return {
-  "bash",
   "diff",
   "json",
   "jsonc",
