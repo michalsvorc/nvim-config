@@ -15,13 +15,30 @@ limitations under the License.
 
 Source: https://github.com/LazyVim/LazyVim/blob/v14.6.0/lua/lazyvim/config/keymaps.lua
 
-Changed: Diff with source for list of changes.
+Added:
+  - native terminal
+  - yank path
+  - commands
+  - remap built-in commands
+Changed:
+  - buffer: switch to other buffer
+  - quickfix list
+  - Line Diagnostics
+  - Snacks git
+Removed:
+  - Lazy command
+  - location list
+  - Snacks.toggle profiler
+  - LazyGit
+  - quit all
+  - LazyVim Changelog
+  - floating terminal
+  - Snacks zoom
+  - Snacks zen
 --]]
 
 -- This file is automatically loaded by lazyvim.config.init
 
--- DO NOT USE `LazyVim.safe_keymap_set` IN YOUR OWN CONFIG!!
--- use `vim.keymap.set` instead
 local map = vim.keymap.set
 
 -- better up/down
