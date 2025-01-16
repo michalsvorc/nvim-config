@@ -33,10 +33,10 @@ Removed:
 
 return {
   -- formatting
-  { import = "extras.formatting.prettier" },
+  { import = "extras.formatting.prettier", cond = vim.g.formatting_prettier_conditional_import },
 
   -- linting
-  { import = "extras.linting.eslint" },
+  { import = "extras.linting.eslint", cond = vim.g.linting_eslint_conditional_import },
 
   -- syntax
   {
