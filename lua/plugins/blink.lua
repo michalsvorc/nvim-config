@@ -17,6 +17,7 @@ Source: https://github.com/LazyVim/LazyVim/blob/v14.6.0/lua/lazyvim/plugins/extr
 
 Added:
   - menu.draw.columns
+  - disable auto insertion of selected item from completion list
 Changed:
   - use mini.icons
   - keymap
@@ -106,6 +107,12 @@ return {
         },
         ghost_text = {
           enabled = vim.g.ai_cmp,
+        },
+        -- https://cmp.saghen.dev/configuration/completion.html#list
+        list = {
+          selection = {
+            auto_insert = false,
+          },
         },
       },
 
