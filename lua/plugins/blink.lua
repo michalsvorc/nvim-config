@@ -25,6 +25,7 @@ Removed:
   - conditionals for vim.g.lazyvim_blink_main (following main branch)
   - optional nvim-cmp declaration
   - lazydev setup
+  - highlight groups fallback for themes not supporting blink.cmp
 --]]
 
 -- https://github.com/Saghen/blink.cmp
@@ -77,10 +78,6 @@ return {
         end,
       },
       appearance = {
-        -- sets the fallback highlight groups to nvim-cmp's highlight groups
-        -- useful for when your theme doesn't support blink.cmp
-        -- will be removed in a future release, assuming themes add support
-        use_nvim_cmp_as_default = false,
         -- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
         -- adjusts spacing to ensure icons are aligned
         nerd_font_variant = "mono",
