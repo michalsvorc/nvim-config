@@ -22,9 +22,9 @@ return {
 
     -- stylua: ignore
     keys = {
-      { "<C-i>", function() require("neocodeium").accept() end, mode = "i" },
-      { "<C-l>", function() require("neocodeium").accept_line() end, mode = "i" },
-      { "<C-h>", function() require("neocodeium").accept_word() end, mode = "i" },
+      { "<C-l>", function() require("neocodeium").accept() end, mode = "i" },
+      { "<C-i>", function() require("neocodeium").accept_line() end, mode = "i" },
+      { "<C-o>", function() require("neocodeium").accept_word() end, mode = "i" },
       { "<C-j>",
         function()
           require("neocodeium").cycle_or_complete(1)
@@ -40,7 +40,7 @@ return {
         end,
         mode = "i",
       },
-      { "<C-c>", function() require("neocodeium").clear() end, mode = "i" },
+      { "<C-h>", function() require("neocodeium").clear() end, mode = "i" },
     },
     config = function(_, opts)
       require("neocodeium").setup(opts)

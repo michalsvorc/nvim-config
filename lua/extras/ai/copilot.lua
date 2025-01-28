@@ -23,10 +23,10 @@ return {
         debounce = 25,
         -- stylua: ignore
         keymap = {
-          accept =      "<C-i>",
-          accept_line = "<C-l>",
-          accept_word = "<C-h>",
-          dismiss =     "<C-c>",
+          accept =      "<C-l>",
+          accept_line = "<C-i>",
+          accept_word = "<C-o>",
+          dismiss =     "<C-h>",
         },
       },
       filetypes = {
