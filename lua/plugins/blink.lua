@@ -21,6 +21,7 @@ Added:
 Changed:
   - use mini.icons
   - keymaps
+  - disable ghost text
 Removed:
   - conditionals for vim.g.lazyvim_blink_main (following main branch)
   - optional nvim-cmp declaration
@@ -101,7 +102,7 @@ return {
           auto_show_delay_ms = 200,
         },
         ghost_text = {
-          enabled = vim.g.ai_cmp,
+          enabled = false,
         },
         -- https://cmp.saghen.dev/configuration/completion.html#list
         list = {
