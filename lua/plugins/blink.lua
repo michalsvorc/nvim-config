@@ -22,10 +22,9 @@ Changed:
   - use mini.icons
   - keymaps
 Removed:
-  - lazyvim_docs check for main completion engine
-  - optional completion engine declaration
+  - conditionals for vim.g.lazyvim_blink_main (following main branch)
+  - optional nvim-cmp declaration
   - lazydev setup
-  - <Tab> completion
 --]]
 
 -- https://github.com/Saghen/blink.cmp
@@ -51,8 +50,7 @@ local components = {
 return {
   {
     "saghen/blink.cmp",
-    version = not vim.g.lazyvim_blink_main and "*",
-    build = vim.g.lazyvim_blink_main and "cargo build --release",
+    version = "*",
     opts_extend = {
       "sources.completion.enabled_providers",
       "sources.compat",
@@ -65,7 +63,7 @@ return {
         "saghen/blink.compat",
         optional = true, -- make optional so it's only enabled if any extras need it
         opts = {},
-        version = not vim.g.lazyvim_blink_main and "*",
+        version = "*",
       },
     },
     event = "InsertEnter",
