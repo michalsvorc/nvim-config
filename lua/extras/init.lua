@@ -6,7 +6,6 @@ return {
   -- lang
   lang_gdscript = "lang/gdscript.lua",
   lang_python = "lang/python.lua",
-  lang_shell = "lang/shell.lua",
   lang_terraform = "lang/terraform.lua",
   lang_typescript = "lang/typescript.lua",
   lang_vue = "lang/vue.lua",
