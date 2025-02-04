@@ -39,13 +39,13 @@ return {
     },
     keys = {
       { "<LocalLeader>s", "<cmd>Copilot panel<cr>", mode = { "n", "v" }, desc = "Suggestions panel" },
-      { "<LocalLeader>p", "<cmd>Copilot! attach<cr>", mode = { "n", "v" }, desc = "Copilot attach" },
       {
         "<LocalLeader>t",
         "<cmd>Copilot suggestion toggle_auto_trigger<cr>",
         mode = { "n", "v" },
         desc = "Suggestions trigger toggle",
       },
+      { "<LocalLeader>c", "<cmd>Copilot! attach<cr>", mode = { "n", "v" }, desc = "Attach client" },
       {
         "<C-j>",
         function()
