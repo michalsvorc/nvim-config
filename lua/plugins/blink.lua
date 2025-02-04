@@ -78,6 +78,11 @@ return {
           return LazyVim.cmp.expand(snippet)
         end,
       },
+      enabled = function()
+        return not vim.tbl_contains({ "markdown" }, vim.bo.filetype)
+          and vim.bo.buftype ~= "prompt"
+          and vim.b.completion ~= false
+      end,
       appearance = {
         -- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
         -- adjusts spacing to ensure icons are aligned
