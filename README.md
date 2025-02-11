@@ -35,6 +35,7 @@ Read [blink.cmp](https://cmp.saghen.dev/configuration/snippets.html#custom-snipp
 ### LazyVim
 
 - [News](https://www.lazyvim.org/news)
+- [Changelog](https://github.com/LazyVim/LazyVim/blob/main/CHANGELOG.md)
 
 ### lazy.nvim
 
