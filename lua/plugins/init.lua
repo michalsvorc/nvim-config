@@ -42,6 +42,7 @@ return {
   { "folke/lazy.nvim", version = "*" },
   {
     "LazyVim/LazyVim",
+    version = "*",
     priority = 10000,
     lazy = false,
     opts = {},
@@ -52,6 +53,7 @@ return {
   },
   {
     "folke/snacks.nvim",
+    version = "*",
     priority = 1000,
     lazy = false,
     opts = {},
