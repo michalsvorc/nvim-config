@@ -34,6 +34,7 @@ require("lazy").setup({
   },
   defaults = {
     lazy = true,
+    version = "*",
   },
   performance = {
     rtp = {
